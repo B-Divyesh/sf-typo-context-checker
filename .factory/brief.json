@@ -1,0 +1,30 @@
+{
+  "slug": "typo-context-checker",
+  "title": "Context Check",
+  "territory": "devtools-data",
+  "user": "Dyslexic software engineers and their reviewers who need to catch visually plausible identifier, config-key, and shell-command mistakes before they become production incidents.",
+  "evidence": [
+    {
+      "url": "https://hn.algolia.com/api/v1/items/46462531",
+      "date": "2026-01-02",
+      "quote_or_summary": "An Ask HN participant describes a diligent colleague with a high typo rate causing late catches and production outages; linting and normal review have not solved it."
+    },
+    {
+      "url": "https://github.com/QSlate/QSlate-Front/issues/46",
+      "date": "2026-07-16",
+      "quote_or_summary": "A product accessibility audit explicitly requests a dyslexia-friendly toggle to reduce reading friction."
+    }
+  ],
+  "recurrence": "Two independent 2026 accounts connect dyslexia-related reading friction to work quality; the HN report calls out repeated late defects, making severity higher than ordinary spelling errors.",
+  "current_workaround": "Rely on spell check, linters, code review, extra tests, or a colleague; these either miss domain tokens or add social friction.",
+  "incumbents_and_gap": "LanguageTool, cspell, IDE linting, and Grammarly flag spelling, while font toggles only change presentation. They do not compare a change against repository vocabulary and flag confusable, near-duplicate tokens in context.",
+  "smallest_useful_product": "Local VS Code extension that highlights newly introduced near-matches to existing identifiers, config keys, filenames, and commands; presents a one-line spoken/readable comparison and an explicit dismiss action. Non-goals: AI code generation, performance scoring, or diagnosis.",
+  "success_measure": "At least 50% of pilot users retain the extension after four weeks and each reports one prevented wrong-key, wrong-file, or wrong-command change.",
+  "artifact_class": "browser-extension",
+  "monetization": "free — local-first adoption and accessibility trust matter more than billing; paid team policy/reporting can be evaluated later.",
+  "constraints": "Never upload source by default; support disabling sensitive paths; suggestions must be explainable and avoid labeling a person or condition.",
+  "est_build_effort": "M",
+  "why_distinct": "The unit of help is an explainable repository-context confusion, not generic grammar correction or a dyslexia-font clone.",
+  "confidence": 4,
+  "state": "RESEARCHED"
+}
