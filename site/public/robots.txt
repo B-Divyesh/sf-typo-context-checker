@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://typo-context-checker.sociobot.in/sitemap.xml
