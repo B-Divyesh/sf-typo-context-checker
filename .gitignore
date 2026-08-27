@@ -3,4 +3,8 @@ dist/
 .env
 *.log
 graphify-out/
+test-results/
+playwright-report/
+.wxt/
+site/public/downloads/
 .DS_Store

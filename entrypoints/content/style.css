@@ -1,0 +1,28 @@
+.context-check-note {
+  --cc-paper: #fffdf7;
+  --cc-ink: #171715;
+  --cc-muted: #5f5d56;
+  --cc-proof: #9d1c13;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px 12px;
+  align-items: center;
+  margin: 8px 4px 8px 0;
+  padding: 10px 12px;
+  color: var(--cc-ink);
+  background: var(--cc-paper);
+  border: 1px solid var(--cc-ink);
+  border-left: 5px double var(--cc-proof);
+  font: 14px/1.45 ui-sans-serif, system-ui, sans-serif;
+  white-space: normal;
+  box-shadow: 3px 3px 0 rgb(23 23 21 / 15%);
+}
+
+.context-check-flag { color: var(--cc-proof); font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.context-check-comparison { font: 700 14px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.context-check-explanation { grid-column: 1 / 3; color: var(--cc-muted); }
+.context-check-note button { grid-column: 3; grid-row: 1 / 3; min-height: 44px; padding: 6px 10px; color: var(--cc-proof); background: transparent; border: 1px solid currentColor; border-radius: 0; font: 700 12px/1.2 ui-sans-serif, system-ui, sans-serif; cursor: pointer; }
+.context-check-note:focus-visible, .context-check-note button:focus-visible, .context-check-summary:focus-visible { outline: 3px solid #171715; outline-offset: 3px; }
+.context-check-summary { position: fixed; z-index: 10000; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); min-height: 44px; padding: 10px 16px; color: #fffdf7; background: #9d1c13; border: 2px solid #fffdf7; border-radius: 0; box-shadow: 4px 4px 0 #171715; font: 800 13px/1.2 ui-sans-serif, system-ui, sans-serif; cursor: pointer; }
+@media (max-width: 620px) { .context-check-note { grid-template-columns: 1fr; } .context-check-explanation, .context-check-note button { grid-column: 1; grid-row: auto; } }
+@media (prefers-reduced-motion: no-preference) { .context-check-note { animation: context-check-enter 180ms ease-out both; } .context-check-note button, .context-check-summary { transition: transform 120ms ease, background-color 120ms ease; } .context-check-note button:active, .context-check-summary:active { transform: translate(1px, 1px); } @keyframes context-check-enter { from { opacity: 0; transform: translateY(6px); } } }

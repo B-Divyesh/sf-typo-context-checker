@@ -1,0 +1,32 @@
+{
+  "name": "context-check",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first contextual typo checker for GitHub pull requests.",
+  "scripts": {
+    "dev": "wxt",
+    "dev:site": "vite --config vite.site.config.ts",
+    "build:extension": "wxt build",
+    "build:site": "vite build --config vite.site.config.ts",
+    "build": "npm run clean && npm run build:extension && npm run package:extension && npm run build:site && node scripts/verify-dist.mjs",
+    "clean": "node scripts/clean.mjs",
+    "package:extension": "node scripts/package-extension.mjs",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "tsc --noEmit && npm test",
+    "prepare": "wxt prepare"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.58.2",
+    "@types/chrome": "0.0.316",
+    "@types/node": "22.13.10",
+    "archiver": "7.0.1",
+    "sharp": "^0.34.3",
+    "typescript": "5.8.3",
+    "vite": "5.4.14",
+    "vitest": "3.0.7",
+    "wxt": "0.20.6"
+  }
+}

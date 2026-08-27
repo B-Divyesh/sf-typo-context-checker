@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["chrome", "vitest/globals", "node"]
+  },
+  "include": ["src", "entrypoints", "site", "*.ts", "tests/*.ts", ".wxt/wxt.d.ts"],
+  "exclude": ["tests/e2e"]
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Context Check</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to checker</a>
+    <header class="masthead">
+      <div class="folio"><span>Local proof desk</span><span id="connection-status">Works offline</span></div>
+      <h1>Context<br />Check<span aria-hidden="true">.</span></h1>
+      <p>Compare new tokens with the words your project already trusts.</p>
+    </header>
+    <main id="main">
+      <section aria-labelledby="page-heading" class="page-status">
+        <div>
+          <p class="kicker">Current page</p>
+          <h2 id="page-heading">No pull request detected</h2>
+        </div>
+        <p id="page-detail">Open a GitHub pull request or use the checker below.</p>
+      </section>
+
+      <section aria-labelledby="checker-heading">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">Proof sheet</p>
+            <h2 id="checker-heading">Check pasted changes</h2>
+          </div>
+          <span class="shortcut" aria-label="Keyboard shortcut: Control or Command plus Enter">⌘/Ctrl ↵</span>
+        </div>
+        <form id="check-form" novalidate>
+          <label for="existing-text">Existing project words</label>
+          <p class="field-help" id="existing-help">Paste known identifiers, config keys, filenames, or commands.</p>
+          <textarea id="existing-text" aria-describedby="existing-help" rows="4" spellcheck="false" placeholder="database_url&#10;retryCount&#10;npm run deploy"></textarea>
+
+          <label for="changed-text">New or changed text</label>
+          <p class="field-help" id="changed-help">Paste only the lines you want checked.</p>
+          <textarea id="changed-text" aria-describedby="changed-help" rows="4" spellcheck="false" placeholder="databse_url = …"></textarea>
+          <button class="primary" type="submit">Check in context</button>
+        </form>
+
+        <div id="results" class="results" aria-live="polite" aria-atomic="false">
+          <p class="empty-state"><strong>Ready when you are.</strong><br />Nothing leaves this browser.</p>
+        </div>
+        <div id="undo-region" class="undo-region" aria-live="polite"></div>
+      </section>
+
+      <details class="settings">
+        <summary>Review settings</summary>
+        <form id="settings-form">
+          <label class="toggle-row" for="enabled">
+            <span><strong>Check GitHub diffs</strong><small>Runs only on pull request, commit, and compare pages.</small></span>
+            <input id="enabled" type="checkbox" />
+          </label>
+          <label for="disabled-paths">Paths not to inspect</label>
+          <p class="field-help" id="paths-help">One path or wildcard per line. Defaults include secrets and key files.</p>
+          <textarea id="disabled-paths" rows="4" aria-describedby="paths-help" spellcheck="false"></textarea>
+          <div class="settings-actions">
+            <button type="submit">Save settings</button>
+            <button id="clear-dismissed" type="button">Restore dismissed pairs</button>
+          </div>
+          <p id="settings-status" class="status-line" role="status"></p>
+        </form>
+      </details>
+    </main>
+    <footer>
+      <span>No uploads. No scoring.</span>
+      <a href="https://typo-context-checker.sociobot.in/privacy" target="_blank" rel="noreferrer">Privacy</a>
+    </footer>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
