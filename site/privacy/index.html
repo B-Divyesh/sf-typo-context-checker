@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="description" content="Context Check privacy policy: source code and settings stay in your browser." />
+    <meta name="description" content="Context Check privacy policy: source code and settings stay on your device." />
     <title>Privacy — Context Check</title>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/legal.css" />
@@ -16,9 +16,9 @@
       <p class="eyebrow">Plain-language policy</p>
       <h1>Privacy</h1>
       <p class="standfirst">Context Check is built so we do not receive your source code, comparisons, settings, or dismissed suggestions.</p>
-      <section><h2>What stays on your device</h2><p>The extension reads the visible content of GitHub pull request, commit, and compare pages only when those pages are open. Matching happens inside the extension. Disabled path patterns, dismissed token pairs, and the most recent page result are stored in browser extension-local storage.</p></section>
+      <section><h2>What stays on your device</h2><p>The VS Code extension reads permitted files in the local workspace to build a local vocabulary and compares newly introduced editor text there. It excludes environment files, secret directories, and PEM files by default. The Chromium companion reads visible GitHub pull request, commit, and compare pages only when those pages are open. Matching happens inside the relevant extension. Disabled path patterns, dismissed token pairs, and page results are stored in local extension storage.</p></section>
       <section><h2>What we collect</h2><p>Nothing from the extension. There are no user accounts, analytics SDKs, advertising cookies, crash reporters, telemetry endpoints, or remote model calls. The hosted website may be subject to ordinary short-lived infrastructure access logs maintained by the deployment provider for security and reliability; the product does not read or profile them.</p></section>
-      <section><h2>Permissions</h2><p><strong>github.com access</strong> lets the extension inspect visible diff text and place local proof notes beside added lines. <strong>Storage</strong> saves your settings and dismissals. Context Check does not request access to other sites.</p></section>
+      <section><h2>Permissions</h2><p><strong>VS Code workspace access</strong> lets the local extension read permitted workspace files and show local diagnostics. <strong>github.com access</strong> lets the optional Chromium companion inspect visible diff text and place local proof notes beside added lines. <strong>Storage</strong> saves browser-companion settings and dismissals. Context Check does not request access to other websites.</p></section>
       <section><h2>Delete your data</h2><p>Choose “Restore dismissed pairs” in Review settings to clear those decisions. Removing the extension clears its local storage through your browser. You can also clear extension data from your browser settings.</p></section>
       <section><h2>Contact and changes</h2><p>Questions can be opened in the public <a href="https://github.com/B-Divyesh/sf-typo-context-checker/issues" rel="noreferrer">project issue tracker</a>. Material changes will be dated here and shipped with a new extension version.</p></section>
     </main>

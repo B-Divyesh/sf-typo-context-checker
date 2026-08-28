@@ -1,4 +1,5 @@
 import { checkContext } from '../../src/core/checker';
+import { replaceFirstSuggestion } from '../../src/core/replacement';
 import { dismissPair, getSettings, restorePair, saveSettings } from '../../src/core/storage';
 import type { Finding } from '../../src/core/types';
 import './style.css';
@@ -55,11 +56,27 @@ function renderResults(findings: Finding[]): void {
     const useButton = element('button');
     useButton.type = 'button';
     useButton.textContent = `Use “${finding.existing}”`;
-    useButton.addEventListener('click', () => {
-      changedInput.value = changedInput.value.split(finding.introduced).join(finding.existing);
-      const next = checkContext(existingInput.value, changedInput.value);
+    useButton.addEventListener('click', async () => {
+      const replacement = replaceFirstSuggestion(changedInput.value, finding.introduced, finding.existing);
+      changedInput.value = replacement.after;
+      const settings = await getSettings();
+      const next = checkContext(existingInput.value, changedInput.value, { dismissedPairs: settings.dismissedPairs });
       renderResults(next);
       changedInput.focus();
+      const notice = element('p');
+      notice.append(`Replaced “${finding.introduced}” with “${finding.existing}”. `);
+      const undo = element('button', 'undo-button');
+      undo.type = 'button';
+      undo.textContent = 'Undo';
+      undo.addEventListener('click', async () => {
+        changedInput.value = replacement.before;
+        const current = await getSettings();
+        renderResults(checkContext(existingInput.value, changedInput.value, { dismissedPairs: current.dismissedPairs }));
+        undoRegion.replaceChildren();
+        changedInput.focus();
+      });
+      notice.append(undo);
+      undoRegion.replaceChildren(notice);
     });
     const dismissButton = element('button', 'text-button');
     dismissButton.type = 'button';

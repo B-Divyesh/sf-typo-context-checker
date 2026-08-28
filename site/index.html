@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Context Check catches near-match identifiers, config keys, filenames, and commands in GitHub changes—locally and explainably." />
+    <meta name="description" content="Context Check catches near-match identifiers, config keys, filenames, and commands in local VS Code workspaces—privately and explainably." />
     <meta name="theme-color" content="#f2efe6" />
     <meta name="color-scheme" content="light" />
     <title>Context Check — Spot the almost-right token</title>
@@ -17,7 +17,7 @@
       <nav aria-label="Primary navigation">
         <a href="#how-it-works">How it works</a>
         <a href="#privacy">Privacy</a>
-        <a class="nav-download" href="/downloads/context-check-chrome.zip" download>Download v1.0</a>
+        <a class="nav-download" href="/downloads/context-check-vscode.vsix" download>Download v1.1</a>
       </nav>
     </header>
 
@@ -28,12 +28,12 @@
           <div class="hero-copy">
             <p class="eyebrow">A second look for the almost-right token</p>
             <h1 id="hero-title">Catch the typo your linter reads right past<span aria-hidden="true">.</span></h1>
-            <p class="standfirst">Context Check compares new GitHub diff tokens with the vocabulary already in your project—then explains the one character that looks out of place.</p>
+            <p class="standfirst">Context Check compares newly introduced VS Code tokens with vocabulary already in your local repository—then explains the one character that looks out of place.</p>
             <div class="hero-actions">
-              <a class="button primary" href="/downloads/context-check-chrome.zip" download>Download for Chromium</a>
+              <a class="button primary" href="/downloads/context-check-vscode.vsix" download>Download for VS Code</a>
               <a class="text-link" href="#try-it">Try a local check <span aria-hidden="true">↓</span></a>
             </div>
-            <p class="fine-print">Free · Manifest V3 · Chrome, Edge, Brave · source never uploaded</p>
+            <p class="fine-print">Free · VS Code 1.85+ · repository stays on your device</p>
           </div>
           <figure class="hero-art">
             <picture>
@@ -47,7 +47,7 @@
       </section>
 
       <aside class="trust-strip" aria-label="Product commitments">
-        <p><strong>Private by design.</strong> Reads visible diffs in your browser.</p>
+        <p><strong>Private by design.</strong> Reads permitted workspace files on your device.</p>
         <p><strong>Explainable.</strong> Shows the exact nearby project token.</p>
         <p><strong>Respectful.</strong> Flags a comparison, never a person.</p>
       </aside>
@@ -82,25 +82,25 @@ paymentRetyrCount += 1</textarea>
       <section id="how-it-works" class="how" aria-labelledby="how-title">
         <div class="section-index" aria-hidden="true">02</div>
         <div class="section-intro">
-          <p class="eyebrow">On every review</p>
-          <h2 id="how-title">A quiet check, right where the change lives.</h2>
+          <p class="eyebrow">While you edit</p>
+          <h2 id="how-title">A quiet check, right where the change begins.</h2>
         </div>
         <ol class="steps">
-          <li><span>01</span><h3>Open a GitHub diff</h3><p>Context Check reads visible added and surrounding lines after the page loads.</p></li>
-          <li><span>02</span><h3>Review a close match</h3><p>A proof note names both tokens and describes the differing character or length.</p></li>
-          <li><span>03</span><h3>Decide and move on</h3><p>Fix the token, dismiss that exact pair, or disable a sensitive path. The choice stays local.</p></li>
+          <li><span>01</span><h3>Open a local workspace</h3><p>Context Check builds a local vocabulary from permitted files, excluding environment and secret paths by default.</p></li>
+          <li><span>02</span><h3>Review a close match</h3><p>A VS Code inline diagnostic names both tokens and describes the differing character or length.</p></li>
+          <li><span>03</span><h3>Decide and move on</h3><p>Use the existing token with Quick Fix (and VS Code Undo), dismiss that exact pair, or disable a sensitive path. The choice stays local.</p></li>
         </ol>
         <div class="install-note">
-          <p class="eyebrow">Install the preview</p>
-          <p>Download and unzip the package, open <code>chrome://extensions</code>, enable Developer mode, then choose <strong>Load unpacked</strong>. Pin Context Check for the paste-in proof sheet.</p>
-          <a class="button secondary" href="/downloads/context-check-chrome.zip" download>Download extension zip</a>
+          <p class="eyebrow">Install the local extension</p>
+          <p>Download the VSIX, open VS Code Extensions, choose <strong>Install from VSIX…</strong>, then open a repository. Use <code>Context Check: Refresh repository vocabulary</code> after large changes. A Chromium GitHub-diff companion remains available for browser review.</p>
+          <div class="install-actions"><a class="button secondary" href="/downloads/context-check-vscode.vsix" download>Download VS Code VSIX</a><a class="text-link" href="/downloads/context-check-chrome.zip" download>Chromium companion</a></div>
         </div>
       </section>
 
       <section id="privacy" class="privacy-callout" aria-labelledby="privacy-title">
         <p class="eyebrow">No cloud in the loop</p>
         <h2 id="privacy-title">Your source belongs to your project, not ours.</h2>
-        <p>Matching happens entirely in the browser. Context Check has no analytics SDK, account, server, model API, or telemetry endpoint. Settings and dismissals use extension-local storage.</p>
+        <p>Matching happens entirely on your device. Context Check has no analytics SDK, account, server, model API, or telemetry endpoint. VS Code and browser settings and dismissals use local extension storage.</p>
         <a class="text-link" href="/privacy/">Read the plain-language privacy policy →</a>
       </section>
 
@@ -110,8 +110,8 @@ paymentRetyrCount += 1</textarea>
         <div class="faq-list">
           <details><summary>Is this a spell checker?</summary><p>No. It ignores prose. It looks for a new code-like token that is unusually close to a token already present in the surrounding repository context.</p></details>
           <details><summary>Does it diagnose dyslexia?</summary><p>No. It is an accessibility-minded review tool for anyone who benefits from an explicit token comparison. It never evaluates a person.</p></details>
-          <details><summary>Will it block a merge?</summary><p>No. Version 1 adds review notes in your browser only. It does not change GitHub, your code, or CI status.</p></details>
-          <details><summary>Can I exclude sensitive files?</summary><p>Yes. The extension starts with patterns for environment files, secret directories, and PEM files. Add one path or wildcard per line in Review settings.</p></details>
+          <details><summary>Will it block a merge?</summary><p>No. It shows an informational VS Code diagnostic only. It does not change CI status or make a change without your Quick Fix choice.</p></details>
+          <details><summary>Can I exclude sensitive files?</summary><p>Yes. The VS Code extension starts with patterns for environment files, secret directories, and PEM files. Add one workspace-relative path or wildcard in Settings.</p></details>
         </div>
       </section>
     </main>

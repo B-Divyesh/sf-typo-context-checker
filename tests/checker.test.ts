@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { checkContext, damerauLevenshtein, extractTokens, makePairKey, pathIsDisabled } from '../src/core/checker';
+import { replaceFirstSuggestion } from '../src/core/replacement';
+import { checkWorkspaceChange, repositoryVocabulary } from '../src/vscode/workspace-check';
 
 describe('context checker', () => {
   it('finds a transposed character in a repository key', () => {
@@ -34,5 +36,21 @@ describe('context checker', () => {
     expect(pathIsDisabled('.env.local', ['.env*'])).toBe(true);
     expect(pathIsDisabled('src/secrets/token.ts', ['**/secrets/**'])).toBe(true);
     expect(pathIsDisabled('src/public/app.ts', ['secrets'])).toBe(false);
+  });
+
+  it('keeps the original text for an exact, one-step Use existing undo', () => {
+    const replacement = replaceFirstSuggestion('databse_url = databse_url', 'databse_url', 'database_url');
+    expect(replacement.after).toBe('database_url = databse_url');
+    expect(replacement.before).toBe('databse_url = databse_url');
+  });
+
+  it('checks a newly introduced token against local repository vocabulary and excludes sensitive paths', () => {
+    const documents = [
+      { path: 'src/config.ts', text: 'const database_url = value;' },
+      { path: '.env.production', text: 'database_url=secret-value' }
+    ];
+    expect(repositoryVocabulary(documents, ['.env*'])).not.toContain('secret-value');
+    expect(checkWorkspaceChange(documents, 'const databse_url = value;', ['.env*']))
+      .toEqual([expect.objectContaining({ introduced: 'databse_url', existing: 'database_url' })]);
   });
 });

@@ -25,6 +25,16 @@ test('landing page has no serious accessibility violations', async ({ page }) =>
   expect(results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact ?? ''))).toEqual([]);
 });
 
+test('390px navigation and footer links retain 44px touch targets', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  for (const name of ['Context Check, home', 'Try a local check', 'Privacy', 'Terms', 'Source']) {
+    const box = await page.getByRole('link', { name }).boundingBox();
+    expect(box, `${name} should be visible`).not.toBeNull();
+    expect(box!.height, `${name} should be at least 44px high`).toBeGreaterThanOrEqual(44);
+  }
+});
+
 test('legal pages retain semantic essentials', async ({ page }) => {
   for (const path of ['/privacy/', '/terms/']) {
     await page.goto(path);

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "outDir": "./dist/vscode-extension",
+    "rootDir": ".",
+    "types": ["node", "vscode"]
+  },
+  "include": ["src/core/checker.ts", "src/core/types.ts", "src/vscode/**/*.ts", "vscode/**/*.ts"]
+}

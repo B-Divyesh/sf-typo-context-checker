@@ -1,0 +1,46 @@
+{
+  "name": "context-check",
+  "displayName": "Context Check",
+  "description": "Local, explainable repository-vocabulary checks for near-match code tokens.",
+  "version": "1.1.0",
+  "publisher": "sociobot",
+  "license": "MIT",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Linters", "Other"],
+  "keywords": ["typo", "accessibility", "repository", "identifier", "context"],
+  "main": "./vscode/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:contextCheck.scanWorkspace",
+    "onCommand:contextCheck.dismissPair"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "contextCheck.scanWorkspace", "title": "Context Check: Refresh repository vocabulary" },
+      { "command": "contextCheck.dismissPair", "title": "Context Check: Dismiss this comparison" }
+    ],
+    "configuration": {
+      "title": "Context Check",
+      "properties": {
+        "contextCheck.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check newly introduced tokens against local repository vocabulary."
+        },
+        "contextCheck.disabledPaths": {
+          "type": "array",
+          "default": [".env*", "**/secrets/**", "**/*.pem"],
+          "items": { "type": "string" },
+          "description": "Workspace-relative paths to exclude from Context Check."
+        },
+        "contextCheck.maxWorkspaceFiles": {
+          "type": "number",
+          "default": 300,
+          "minimum": 1,
+          "maximum": 2000,
+          "description": "Maximum number of local workspace files to index."
+        }
+      }
+    }
+  }
+}

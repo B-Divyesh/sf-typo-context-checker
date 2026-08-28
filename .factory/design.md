@@ -40,7 +40,7 @@ An 8px base rhythm with 4px micro-spacing. Site gutters are `clamp(20px, 5vw, 72
 
 - Underline = navigation. Filled proof-red = the one primary action.
 - A detected mismatch appears as a proof mark: the differing character is underlined twice, then an explanation says exactly why it was flagged.
-- “Use existing” changes only the introduced token. “Dismiss” records that exact pair locally; both give immediate status feedback and an Undo action.
+- In the Chromium companion, “Use existing” changes only the first introduced token and provides a visible, lossless Undo action. “Dismiss” records that exact pair locally and also provides Undo. In VS Code, the local extension offers the native undoable “Use existing” Quick Fix and an exact-pair dismiss action.
 - The extension badge is a count, not a score. Copy never labels a person, reading ability, or code quality.
 - Keyboard order follows the page; comparison actions support Enter/Space and the popup includes a documented `Ctrl/⌘ + Enter` check shortcut.
 
