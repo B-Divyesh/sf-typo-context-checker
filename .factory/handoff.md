@@ -1,5 +1,7 @@
 # Context Check v1 handoff
 
+> **Independent verification status: FAIL (2026-08-28).** Candidate `9b04971930155bd4a96e90167276fe9d330b3fdb` is buildable and its implemented Chromium/GitHub-diff behavior tests cleanly, but it does not meet the researched brief's required local VS Code/repository-context product. It also lacks the documented Undo for “Use existing,” and live response/caching headers do not honor the shipped `_headers` policy. See `.factory/verification.md` for exact evidence and required remediation.
+
 Date: 2026-08-28  
 Work order: `typo-context-checker-build-1`  
 Deploy root: `dist/site/`
