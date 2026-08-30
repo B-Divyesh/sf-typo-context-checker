@@ -139,10 +139,30 @@ export function checkContext(existingText: string, introducedText: string, optio
 }
 
 export function pathIsDisabled(path: string, patterns: string[]): boolean {
+  const normalizedPath = path.replace(/\\/g, '/').replace(/^\.\//, '');
   return patterns.some((rawPattern) => {
-    const pattern = rawPattern.trim();
+    const pattern = rawPattern.trim().replace(/\\/g, '/').replace(/^\.\//, '');
     if (!pattern) return false;
-    const escaped = pattern.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.');
-    return new RegExp(`^${escaped}$`, 'i').test(path) || path.toLowerCase().includes(pattern.toLowerCase());
+    let source = '';
+    for (let index = 0; index < pattern.length; index++) {
+      const character = pattern[index];
+      if (character === '*' && pattern[index + 1] === '*') {
+        index++;
+        if (pattern[index + 1] === '/') {
+          index++;
+          source += '(?:.*/)?';
+        } else {
+          source += '.*';
+        }
+      } else if (character === '*') {
+        source += '[^/]*';
+      } else if (character === '?') {
+        source += '[^/]';
+      } else {
+        source += character.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+      }
+    }
+    const target = pattern.includes('/') ? normalizedPath : normalizedPath.split('/').at(-1) ?? normalizedPath;
+    return new RegExp(`^${source}$`, 'i').test(target);
   });
 }

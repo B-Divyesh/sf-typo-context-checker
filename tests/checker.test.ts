@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { checkContext, damerauLevenshtein, extractTokens, makePairKey, pathIsDisabled } from '../src/core/checker';
 import { replaceFirstSuggestion } from '../src/core/replacement';
-import { checkWorkspaceChange, repositoryVocabulary } from '../src/vscode/workspace-check';
+import { changedLineSlice, checkWorkspaceChange, repositoryVocabulary } from '../src/vscode/workspace-check';
 
 describe('context checker', () => {
   it('finds a transposed character in a repository key', () => {
@@ -34,7 +34,9 @@ describe('context checker', () => {
 
   it('matches exact, wildcard, and substring disabled paths', () => {
     expect(pathIsDisabled('.env.local', ['.env*'])).toBe(true);
+    expect(pathIsDisabled('apps/web/.env.production', ['.env*'])).toBe(true);
     expect(pathIsDisabled('src/secrets/token.ts', ['**/secrets/**'])).toBe(true);
+    expect(pathIsDisabled('key.pem', ['**/*.pem'])).toBe(true);
     expect(pathIsDisabled('src/public/app.ts', ['secrets'])).toBe(false);
   });
 
@@ -52,5 +54,13 @@ describe('context checker', () => {
     expect(repositoryVocabulary(documents, ['.env*'])).not.toContain('secret-value');
     expect(checkWorkspaceChange(documents, 'const databse_url = value;', ['.env*']))
       .toEqual([expect.objectContaining({ introduced: 'databse_url', existing: 'database_url' })]);
+  });
+
+  it('checks the complete current line when VS Code reports one-character typing', () => {
+    const current = 'const first = true;\nconst databse_url = value;\nconst last = true;';
+    const slice = changedLineSlice(current, 1, 'l');
+    expect(slice).toEqual({ startLine: 1, text: 'const databse_url = value;' });
+    expect(checkWorkspaceChange([{ path: 'src/config.ts', text: 'export const database_url = value;' }], slice.text, []))
+      .toEqual([expect.objectContaining({ introduced: 'databse_url', existing: 'database_url', line: 1 })]);
   });
 });

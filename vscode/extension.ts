@@ -1,14 +1,14 @@
 import * as vscode from 'vscode';
 import { extractTokens, makePairKey, pathIsDisabled } from '../src/core/checker';
 import type { Finding } from '../src/core/types';
-import { checkWorkspaceChange, repositoryVocabulary, type WorkspaceDocument } from '../src/vscode/workspace-check';
+import { changedLineSlice, checkWorkspaceChange, type WorkspaceDocument } from '../src/vscode/workspace-check';
 
 const SOURCE = 'Context Check';
 const decoder = new TextDecoder();
 let documents: WorkspaceDocument[] = [];
 let diagnostics: vscode.DiagnosticCollection;
 let context: vscode.ExtensionContext;
-const findingByRange = new Map<string, Finding>();
+const findingByPair = new Map<string, Finding>();
 
 function settings() {
   const configuration = vscode.workspace.getConfiguration('contextCheck');
@@ -21,10 +21,6 @@ function settings() {
 
 function dismissedPairs(): string[] {
   return context.globalState.get<string[]>('dismissedPairs', []);
-}
-
-function rangeKey(uri: vscode.Uri, range: vscode.Range): string {
-  return `${uri.toString()}:${range.start.line}:${range.start.character}:${range.end.line}:${range.end.character}`;
 }
 
 function pathFor(uri: vscode.Uri): string {
@@ -57,35 +53,31 @@ async function refreshVocabulary(): Promise<void> {
   vscode.window.setStatusBarMessage(`Context Check indexed ${documents.length} local files.`, 3500);
 }
 
-function documentRange(change: vscode.TextDocumentContentChangeEvent, token: { start: number; end: number; line: number }): vscode.Range {
-  const lines = change.text.split('\n');
-  const before = lines.slice(0, token.line - 1).join('\n');
-  const startLine = change.range.start.line + token.line - 1;
-  const startCharacter = (token.line === 1 ? change.range.start.character : 0) + token.start - (before ? before.length + 1 : 0);
-  const endCharacter = startCharacter + token.end - token.start;
-  return new vscode.Range(startLine, startCharacter, startLine, endCharacter);
+function documentRange(document: vscode.TextDocument, startLine: number, token: { start: number; end: number; line: number }): vscode.Range {
+  const absoluteLine = startLine + token.line - 1;
+  const lineStart = document.offsetAt(new vscode.Position(absoluteLine, 0));
+  return new vscode.Range(document.positionAt(lineStart + token.start), document.positionAt(lineStart + token.end));
 }
 
-function showFindings(document: vscode.TextDocument, changedText: string, change?: vscode.TextDocumentContentChangeEvent): void {
+function showFindings(document: vscode.TextDocument, changedText: string, startLine = 0): void {
   if (!isEligible(document.uri)) {
     diagnostics.delete(document.uri);
     return;
   }
-  const snapshot = documents.filter((entry) => entry.path !== pathFor(document.uri));
-  const findings = checkWorkspaceChange(snapshot, changedText, settings().disabledPaths, { dismissedPairs: dismissedPairs() });
+  const findings = checkWorkspaceChange(documents, changedText, settings().disabledPaths, { dismissedPairs: dismissedPairs() });
   const occurrences = extractTokens(changedText);
-  const next: vscode.Diagnostic[] = [];
-  findingByRange.clear();
+  const endLine = startLine + Math.max(0, changedText.split('\n').length - 1);
+  const previous = diagnostics.get(document.uri) ?? [];
+  const next: vscode.Diagnostic[] = previous.filter((item) => item.range.end.line < startLine || item.range.start.line > endLine);
   for (const finding of findings) {
     const occurrence = occurrences.find((token) => token.value === finding.introduced && token.line === finding.line);
     if (!occurrence) continue;
-    const range = change ? documentRange(change, occurrence) : document.getWordRangeAtPosition(document.positionAt(occurrence.start));
-    if (!range) continue;
+    const range = documentRange(document, startLine, occurrence);
     const diagnostic = new vscode.Diagnostic(range, `${finding.introduced} looks like existing ${finding.existing}. ${finding.explanation}`, vscode.DiagnosticSeverity.Information);
     diagnostic.source = SOURCE;
     diagnostic.code = finding.pairKey;
     next.push(diagnostic);
-    findingByRange.set(rangeKey(document.uri, range), finding);
+    findingByPair.set(finding.pairKey, finding);
   }
   diagnostics.set(document.uri, next);
 }
@@ -104,8 +96,10 @@ export async function activate(extensionContext: vscode.ExtensionContext): Promi
 
   context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((event) => {
     if (!event.contentChanges.length || !isEligible(event.document.uri)) return;
-    for (const change of event.contentChanges) showFindings(event.document, change.text, change);
-    updateCachedDocument(event.document);
+    for (const change of event.contentChanges) {
+      const slice = changedLineSlice(event.document.getText(), change.range.start.line, change.text);
+      showFindings(event.document, slice.text, slice.startLine);
+    }
   }));
   context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateCachedDocument));
   context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((event) => {
@@ -119,15 +113,17 @@ export async function activate(extensionContext: vscode.ExtensionContext): Promi
   context.subscriptions.push(vscode.commands.registerCommand('contextCheck.dismissPair', async (pairKey: string) => {
     const next = [...new Set([...dismissedPairs(), pairKey])];
     await context.globalState.update('dismissedPairs', next);
-    diagnostics.clear();
-    vscode.window.showInformationMessage('Context Check dismissed this exact comparison locally. Use “Refresh repository vocabulary” to check again.');
+    diagnostics.forEach((uri, current) => {
+      diagnostics.set(uri, current.filter((diagnostic) => diagnostic.code !== pairKey));
+    });
+    vscode.window.showInformationMessage('Context Check dismissed this exact comparison locally.');
   }));
   context.subscriptions.push(vscode.languages.registerCodeActionsProvider({ scheme: 'file' }, {
     provideCodeActions(document, range, actionContext) {
       return actionContext.diagnostics
         .filter((diagnostic) => diagnostic.source === SOURCE)
         .flatMap((diagnostic) => {
-          const finding = findingByRange.get(rangeKey(document.uri, diagnostic.range));
+          const finding = typeof diagnostic.code === 'string' ? findingByPair.get(diagnostic.code) : undefined;
           if (!finding) return [];
           const replace = new vscode.CodeAction(`Use existing “${finding.existing}”`, vscode.CodeActionKind.QuickFix);
           replace.diagnostics = [diagnostic];
@@ -143,7 +139,7 @@ export async function activate(extensionContext: vscode.ExtensionContext): Promi
   context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file' }, {
     provideHover(document, position) {
       const diagnostic = diagnostics.get(document.uri)?.find((item) => item.range.contains(position));
-      const finding = diagnostic && findingByRange.get(rangeKey(document.uri, diagnostic.range));
+      const finding = diagnostic && typeof diagnostic.code === 'string' ? findingByPair.get(diagnostic.code) : undefined;
       return finding ? new vscode.Hover(`${finding.explanation}\n\nUse Quick Fix to use the existing token or dismiss this exact comparison.`) : undefined;
     }
   }));

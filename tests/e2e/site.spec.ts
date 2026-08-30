@@ -29,7 +29,7 @@ test('390px navigation and footer links retain 44px touch targets', async ({ pag
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   for (const name of ['Context Check, home', 'Try a local check', 'Privacy', 'Terms', 'Source']) {
-    const box = await page.getByRole('link', { name }).boundingBox();
+    const box = await page.getByRole('link', { name, exact: true }).boundingBox();
     expect(box, `${name} should be visible`).not.toBeNull();
     expect(box!.height, `${name} should be at least 44px high`).toBeGreaterThanOrEqual(44);
   }

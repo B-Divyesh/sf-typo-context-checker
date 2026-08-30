@@ -9,6 +9,7 @@
   "categories": ["Linters", "Other"],
   "keywords": ["typo", "accessibility", "repository", "identifier", "context"],
   "main": "./vscode/extension.js",
+  "extensionKind": ["workspace"],
   "activationEvents": [
     "onStartupFinished",
     "onCommand:contextCheck.scanWorkspace",
