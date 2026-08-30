@@ -3,10 +3,10 @@
 body { margin:0; font-size:17px; line-height:1.65; }
 a { color:inherit; text-underline-offset:4px; }
 :focus-visible { outline:3px solid var(--proof); outline-offset:4px; }
-.skip-link { position:fixed; top:6px; left:6px; padding:8px 12px; color:var(--raised); background:var(--ink); transform:translateY(-150%); }
+.skip-link { position:fixed; display:inline-flex; min-width:44px; min-height:44px; align-items:center; top:6px; left:6px; padding:8px 12px; color:var(--raised); background:var(--ink); transform:translateY(-150%); }
 .skip-link:focus { transform:none; }
 header, footer { display:flex; justify-content:space-between; gap:24px; padding:20px max(20px, calc((100vw - 900px)/2)); border-bottom:1px solid var(--ink); font-size:13px; font-weight:750; }
-header a, footer a { display:inline-flex; min-height:44px; align-items:center; }
+header a, footer a, main a { display:inline-flex; min-width:44px; min-height:44px; align-items:center; }
 header span { color:var(--muted); }
 main { max-width:900px; margin:auto; padding:clamp(64px,10vw,120px) 20px; }
 .eyebrow { color:var(--proof); font-size:12px; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }

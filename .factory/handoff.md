@@ -1,55 +1,60 @@
-# Context Check independent verification handoff
+# Context Check repair handoff
 
 Date: 2026-08-30
 
-Work order: `typo-context-checker-verify-2`
+Work order: `typo-context-checker-repair-3`
 
-Candidate: `3d5a98edd32634755e31ca30fe549e553f1c6f12`
+Base verified candidate: `3d5a98edd32634755e31ca30fe549e553f1c6f12`
 
 Live URL: <https://typo-context-checker.sociobot.in/>
 
-## Release result
+## Repair result
 
-**FAIL — do not release this candidate.**
+The release-blocking VS Code workflow is repaired. Context Check now removes the active document from candidate repository vocabulary while evaluating an edit, so a saved partial token can never outrank an established token in another permitted file. The new regression exercises both workspace file orders and the packaged VS Code host confirms `databse_url → database_url`, native Quick Fix Undo, and exact-pair dismissal.
 
-All five registered claim commands pass. The static site, demo, Chromium extension, build, privacy checks, automated accessibility scans, response policy, deployment identity, and performance budgets pass. The packaged VS Code extension's primary host integration fails reproducibly, the first screen does not name the intended user in plain words, and several visitor-facing claims are absent from the required claims registry.
+The landing first screen now names software engineers and reviewers explicitly. Direct, plain labels replace the flagged metaphor copy. Every visible interactive control on root, demo, legal, and 404 routes is audited at 390px for a 44×44px minimum. The claims registry now covers the reported Quick Fix, Chromium GitHub route, 300-file default, compatibility, account/payment, and demo-storage promises with one exact tagged test each.
 
-Full evidence and severity-ranked defects are in [verification-2.md](verification-2.md).
+## What changed
 
-## Release blockers
+- Excluded the active VS Code document’s saved/current text from comparison candidates only; the rest of the permitted workspace remains repository vocabulary.
+- Added deterministic active-document order regression coverage plus a retry around the VS Code host’s transient cancelled code-action provider response.
+- Expanded packaged Chromium coverage from a pull request fixture to pull request, commit, and compare fixtures.
+- Added the audience sentence, made the sample action primary, removed prohibited mood labels, and updated the copy audit.
+- Added a comprehensive 390px target audit for every visible link, button, field, and summary control on every shipped route.
+- Added demo persistence, no-service-worker/update, direct-copy, account/payment, file-limit, and VS Code engine regressions.
 
-1. `npm run test:vscode` fails after activation. Typing the final `l` in `databse_url` produces `databse_url → databse_ur`, because the edited file's saved partial token is included in repository vocabulary. The expected established token is `database_url`. This repeated on three consecutive runs and makes `npm run qa` fail.
-2. The cold first screen explains the job and provides a one-click sample, but it does not plainly say that the product is for software engineers and reviewers dealing with visually plausible code-token mistakes. The work order defines that omission as an automatic failure.
-3. `.factory/claims.json` omits claims made on the site/README, including Quick Fix/Undo/dismiss behavior, Chromium GitHub-diff checking, and the 300-file indexing limit.
+## Local verification
 
-## Other findings
-
-- Several 390px targets are below 44px, including the 37px-high footer home link and 20px-high inline links on privacy and 404 pages.
-- Metaphorical headings and decorative labels conflict with the supplied plain-words rules.
-
-## Verification summary
+Clean install:
 
 ```text
-npm ci                  PASS — 0 vulnerabilities
-all 5 claim commands    PASS
-npm run check           PASS — TypeScript + 10/10 Vitest
-npm run build           PASS — full production output
-npm run test:e2e        PASS — 16/16
-npm run test:extension  PASS
-npm run test:vscode     FAIL — wrong repository-context suggestion
-npm run qa              FAIL — fails at test:vscode
-verify-url.sh live      PASS
-live axe                PASS — 0 serious/critical on desktop/mobile routes
-Lighthouse mobile       100/100/100/100; LCP 1.0s; CLS 0; TBT 30ms
+npm ci                         PASS — 296 packages, 0 vulnerabilities
 ```
 
-Live root, route assets, scripts, styles, images, and extracted VSIX/ZIP contents match the candidate build. No server-side endpoint, sign-in, rate-limit surface, or PWA service worker exists, so those checks are not applicable. No product code was changed during verification.
+Release suite:
 
-## Reproduce
+```text
+npm run qa                     PASS
+  npm run check                PASS — TypeScript + 15 Vitest tests
+  npm run build                PASS — MV3 ZIP, VSIX, static site, deploy verification
+  npm run test:e2e             PASS — 22 desktop/390px Playwright tests
+  npm run test:extension       PASS — popup Undo/dismiss, axe, pull/commit/compare fixtures
+  npm run test:vscode          PASS — packaged VSIX host workflow, Quick Fix, Undo, dismiss
+```
+
+All 11 entries in `.factory/claims.json` were also invoked individually and passed. The local URL verifier passed for the built root with title, `lang=en`, one `<h1>`, `<main>`, complete image alt text, labeled buttons, and no page or console errors. Playwright’s Axe integration reports zero serious or critical violations on root, demo, privacy, terms, and 404 at desktop and 390px. The standalone Axe CLI could not start its bundled ChromeDriver against the preinstalled Playwright Chromium; the direct Playwright Axe integration is the authoritative passing accessibility run.
+
+The static artifact intentionally registers no service worker and makes no offline/update claim; the browser suite asserts that no registration exists. The demo is separately tested from a fresh browser context and leaves no cookies, localStorage, or sessionStorage entries. The static deploy verifier confirms CSP, referrer, permissions, immutable asset-cache, and 404 configuration. Initial JavaScript is 5,281 bytes (2.51 KB gzip); main CSS is 10.22 KB (2.99 KB gzip); the MV3 output is 50.70 KB.
+
+## Run and deploy
 
 ```sh
 npm ci
 npm run qa
 ```
 
-On a minimal Linux worker, install GTK 3 before the VS Code host test. The product assertion failure occurs after VS Code starts and is not caused by the GTK prerequisite.
+The deployment artifact is `dist/site/`. Live deployment, response-policy, identity, and Lighthouse evidence will be appended after the static upload for this repair commit.
+
+## Known gaps
+
+None in the repaired product scope. The Linux VS Code host emits environment-level DBus/provider diagnostics under Xvfb, but the extension test itself exits successfully with no Context Check errors.

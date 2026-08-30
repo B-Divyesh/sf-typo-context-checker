@@ -1,6 +1,6 @@
 # Context Check
 
-Context Check is a free, local-first VS Code extension for developers who want a deliberate second look at visually plausible identifiers, config keys, filenames, and commands. It compares newly introduced tokens with vocabulary from permitted local repository files, then presents an explainable inline diagnostic with Quick Fix actions. A Chromium companion preserves the same check on GitHub pull requests, commits, and compare pages.
+Context Check is a local-first VS Code extension for developers who want a deliberate second look at visually plausible identifiers, config keys, filenames, and commands. It compares newly introduced tokens with vocabulary from permitted local repository files, then presents an explainable inline diagnostic with Quick Fix actions. A Chromium companion preserves the same check on GitHub pull requests, commits, and compare pages. No account or payment is required.
 
 It is accessibility-minded but does not diagnose, score, or label anyone. Source text is never uploaded.
 

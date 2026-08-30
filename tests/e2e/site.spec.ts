@@ -11,6 +11,8 @@ test('landing page has a working local checker', async ({ page }) => {
   await expect(page).toHaveTitle(/Context Check/);
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('heading', { name: /Find near-match code typos/ })).toBeVisible();
+  await expect(page.getByText('For software engineers and reviewers who need help spotting plausible code-token mistakes before review.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Try it with sample data' })).toBeVisible();
   await expect(page.getByText('2 possible confusions')).toBeVisible();
 
   await page.getByLabel('New change').fill('database_url = value');
@@ -68,6 +70,28 @@ test('@claim:site-local-only checker sends no text to another origin', async ({ 
   expect(externalRequests).toEqual([]);
 });
 
+test('@claim:demo-ephemeral sample checker stores no browser data', async ({ page, context }) => {
+  await page.goto('/demo/');
+  await page.getByLabel('New change').fill('const databse_url = value;');
+  await page.getByRole('button', { name: 'Check these lines' }).click();
+  await expect(page.getByText('1 possible confusion')).toBeVisible();
+  expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
+  expect(await context.cookies()).toEqual([]);
+  await page.close();
+  const reopened = await context.newPage();
+  await reopened.goto('/demo/');
+  expect(await reopened.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
+});
+
+test('static site does not register a service worker or imply offline updates', async ({ page }) => {
+  await page.goto('/');
+  const registrations = await page.evaluate(async () => {
+    if (!('serviceWorker' in navigator)) return [];
+    return (await navigator.serviceWorker.getRegistrations()).map((registration) => registration.scope);
+  });
+  expect(registrations).toEqual([]);
+});
+
 test('keyboard, reduced motion, and mobile layout remain usable', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -80,6 +104,22 @@ test('keyboard, reduced motion, and mobile layout remain usable', async ({ page 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   const animationDuration = await page.locator('.proof-card').first().evaluate((node) => getComputedStyle(node).animationDuration);
   expect(['0s', '0.00001s', '1e-05s']).toContain(animationDuration);
+});
+
+test('all mobile interactive targets are at least 44 by 44 pixels on every route', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const path of ['/', '/demo/', '/privacy/', '/terms/', '/404.html']) {
+    await page.goto(path);
+    const controls = page.locator('a, button, summary, textarea, input, select');
+    for (let index = 0; index < await controls.count(); index++) {
+      const control = controls.nth(index);
+      if (!await control.isVisible()) continue;
+      const box = await control.boundingBox();
+      expect(box, `${path} control ${index} should have a box`).not.toBeNull();
+      expect(box!.width, `${path} control ${index} should be at least 44px wide`).toBeGreaterThanOrEqual(44);
+      expect(box!.height, `${path} control ${index} should be at least 44px high`).toBeGreaterThanOrEqual(44);
+    }
+  }
 });
 
 test('demo and not-found routes retain semantic essentials', async ({ page }) => {

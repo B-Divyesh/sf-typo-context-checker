@@ -11,10 +11,20 @@ export interface ChangedLineSlice {
   text: string;
 }
 
+export interface WorkspaceCheckOptions extends CheckOptions {
+  /** Paths whose current or saved text must not become comparison candidates. */
+  excludedPaths?: string[];
+}
+
 /** Build only from permitted local workspace documents; callers never send it anywhere. */
-export function repositoryVocabulary(documents: WorkspaceDocument[], disabledPaths: string[]): string {
+export function repositoryVocabulary(
+  documents: WorkspaceDocument[],
+  disabledPaths: string[],
+  excludedPaths: string[] = []
+): string {
+  const excluded = new Set(excludedPaths);
   return documents
-    .filter((document) => !pathIsDisabled(document.path, disabledPaths))
+    .filter((document) => !excluded.has(document.path) && !pathIsDisabled(document.path, disabledPaths))
     .map((document) => `${document.path}\n${document.text}`)
     .join('\n');
 }
@@ -23,9 +33,10 @@ export function checkWorkspaceChange(
   documents: WorkspaceDocument[],
   changedText: string,
   disabledPaths: string[],
-  options: CheckOptions = {}
+  options: WorkspaceCheckOptions = {}
 ): Finding[] {
-  return checkContext(repositoryVocabulary(documents, disabledPaths), changedText, options);
+  const { excludedPaths = [], ...checkOptions } = options;
+  return checkContext(repositoryVocabulary(documents, disabledPaths, excludedPaths), changedText, checkOptions);
 }
 
 /** Read complete current lines after an editor change, so normal one-character typing is checkable. */

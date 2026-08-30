@@ -64,7 +64,12 @@ function showFindings(document: vscode.TextDocument, changedText: string, startL
     diagnostics.delete(document.uri);
     return;
   }
-  const findings = checkWorkspaceChange(documents, changedText, settings().disabledPaths, { dismissedPairs: dismissedPairs() });
+  // The active document can contain the saved partial token that is being completed.
+  // It must not compete with established repository vocabulary for this edit.
+  const findings = checkWorkspaceChange(documents, changedText, settings().disabledPaths, {
+    dismissedPairs: dismissedPairs(),
+    excludedPaths: [pathFor(document.uri)]
+  });
   const occurrences = extractTokens(changedText);
   const endLine = startLine + Math.max(0, changedText.split('\n').length - 1);
   const previous = diagnostics.get(document.uri) ?? [];

@@ -5,6 +5,7 @@ import { join, resolve } from 'node:path';
 import { chromium } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+const GITHUB_DIFF_CLAIM = '@claim:github-diff-checking';
 const extensionPath = resolve('dist/chrome-mv3');
 const profile = await mkdtemp(join(tmpdir(), 'context-check-extension-'));
 const context = await chromium.launchPersistentContext(profile, {
@@ -46,7 +47,7 @@ try {
   const githubErrors = [];
   github.on('console', (message) => { if (message.type() === 'error') githubErrors.push(message.text()); });
   github.on('pageerror', (error) => githubErrors.push(error.message));
-  await github.route('https://github.com/example/project/pull/1', (route) => route.fulfill({
+  await github.route('https://github.com/example/project/**', (route) => route.fulfill({
     contentType: 'text/html',
     body: `<!doctype html><html lang="en"><body>
       <main><div class="file" data-path="src/config.ts">
@@ -55,13 +56,15 @@ try {
       </div></main>
     </body></html>`
   }));
-  await github.goto('https://github.com/example/project/pull/1');
-  await github.getByRole('note').waitFor({ timeout: 5_000 });
-  assert.match(await github.getByRole('note').innerText(), /databse_url → database_url/);
-  assert.equal(await github.locator('.context-check-summary').innerText(), '1 possible confusion');
+  for (const path of ['pull/1', 'commit/abc123', 'compare/main...feature']) {
+    await github.goto(`https://github.com/example/project/${path}`);
+    await github.getByRole('note').waitFor({ timeout: 5_000 });
+    assert.match(await github.getByRole('note').innerText(), /databse_url → database_url/);
+    assert.equal(await github.locator('.context-check-summary').innerText(), '1 possible confusion');
+  }
   assert.deepEqual(githubErrors, [], 'content script should not log console or page errors');
 
-  console.log('Extension integration passed: popup replace/undo/dismiss, axe, and GitHub content script.');
+  console.log(`${GITHUB_DIFF_CLAIM} passed: popup replace/undo/dismiss, axe, and GitHub pull, commit, and compare content checks.`);
 } finally {
   await context.close();
   await rm(profile, { recursive: true, force: true });

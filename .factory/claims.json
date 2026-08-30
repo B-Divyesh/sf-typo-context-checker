@@ -29,9 +29,51 @@
   },
   {
     "id": "extension-local-only",
-    "claim": "The extensions do not upload source or call analytics and model APIs.",
+    "claim": "The extensions keep their settings local and do not upload source or call analytics and model APIs.",
     "where": "landing page, privacy page, README",
     "test": "npm test -- -t @claim:extension-local-only",
     "sandbox": "static scan of every VS Code and Chromium runtime entry point plus the browser host permission"
+  },
+  {
+    "id": "vscode-quick-fix-undo-dismiss",
+    "claim": "VS Code Quick Fix can use the existing token with native Undo or dismiss that exact comparison.",
+    "where": "landing page, README",
+    "test": "npm run test:vscode",
+    "sandbox": "packaged VSIX in an isolated workspace; type a near-match, apply Quick Fix, run Undo, then dismiss its exact pair"
+  },
+  {
+    "id": "github-diff-checking",
+    "claim": "The optional Chromium companion checks visible GitHub pull request, commit, and compare pages.",
+    "where": "landing page, README, privacy page",
+    "test": "npm run test:extension",
+    "sandbox": "unpacked MV3 extension and intercepted GitHub fixtures for one pull request, commit, and compare URL"
+  },
+  {
+    "id": "workspace-file-limit",
+    "claim": "The VS Code extension indexes up to 300 permitted local files by default.",
+    "where": "README, VS Code settings",
+    "test": "npm test -- -t @claim:workspace-file-limit",
+    "sandbox": "read the packaged VS Code configuration schema"
+  },
+  {
+    "id": "vscode-version",
+    "claim": "Context Check supports VS Code 1.85 and later.",
+    "where": "landing page, VS Code package",
+    "test": "npm test -- -t @claim:vscode-version",
+    "sandbox": "read the packaged VS Code engine range"
+  },
+  {
+    "id": "no-paid-gate",
+    "claim": "Context Check has no account or payment gate.",
+    "where": "landing page, README, privacy page",
+    "test": "npm test -- -t @claim:no-paid-gate",
+    "sandbox": "static scan of public product and package files for account and billing integrations"
+  },
+  {
+    "id": "demo-ephemeral",
+    "claim": "The sample checker saves nothing after you close the page.",
+    "where": "landing page, demo page, README",
+    "test": "npm run test:e2e -- --grep @claim:demo-ephemeral",
+    "sandbox": "fresh browser context runs the sample checker and asserts no cookies, localStorage, or sessionStorage entries"
   }
 ]

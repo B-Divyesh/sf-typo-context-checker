@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
 const vscode = require('vscode');
 
+const QUICK_FIX_CLAIM = '@claim:vscode-quick-fix-undo-dismiss';
+
 async function until(read, predicate, message) {
   const started = Date.now();
   while (Date.now() - started < 10_000) {
@@ -9,6 +11,20 @@ async function until(read, predicate, message) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
   assert.fail(message);
+}
+
+async function codeActions(uri, range) {
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const actions = await vscode.commands.executeCommand('vscode.executeCodeActionProvider', uri, range);
+      if (Array.isArray(actions)) return actions;
+    } catch (error) {
+      lastError = error;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 150));
+  }
+  throw lastError ?? new Error('VS Code did not return code actions');
 }
 
 async function run() {
@@ -31,7 +47,7 @@ async function run() {
   assert.match(diagnostic.message, /databse_url looks like existing database_url/);
   assert.equal(document.getText(diagnostic.range), 'databse_url');
 
-  const actions = await vscode.commands.executeCommand('vscode.executeCodeActionProvider', target, diagnostic.range);
+  const actions = await codeActions(target, diagnostic.range);
   const replace = actions.find((action) => action.title === 'Use existing “database_url”');
   assert.ok(replace?.edit, 'Use existing Quick Fix is available');
   assert.equal(await vscode.workspace.applyEdit(replace.edit), true);
@@ -39,7 +55,7 @@ async function run() {
   await vscode.commands.executeCommand('undo');
   assert.match(document.getText(), /databse_url/);
 
-  const refreshed = await vscode.commands.executeCommand('vscode.executeCodeActionProvider', target, diagnostic.range);
+  const refreshed = await codeActions(target, diagnostic.range);
   const dismiss = refreshed.find((action) => action.title === 'Dismiss this comparison');
   assert.ok(dismiss?.command, 'exact-pair dismiss Quick Fix is available');
   await vscode.commands.executeCommand(dismiss.command.command, ...dismiss.command.arguments);
@@ -50,7 +66,7 @@ async function run() {
   );
 
   await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-  console.log('VS Code integration passed: local typing, diagnostic, Quick Fix, native Undo, and dismiss.');
+  console.log(`${QUICK_FIX_CLAIM} passed: local typing, diagnostic, Quick Fix, native Undo, and exact-pair dismiss.`);
 }
 
 module.exports = { run };

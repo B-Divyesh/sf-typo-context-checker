@@ -40,7 +40,9 @@ if (deployConfig.responseOverrides?.['404']?.rewrite !== '/404.html') {
 const claims = JSON.parse(await readFile(resolve('.factory/claims.json'), 'utf8'));
 const testSources = await Promise.all([
   readFile(resolve('tests/checker.test.ts'), 'utf8'),
-  readFile(resolve('tests/e2e/site.spec.ts'), 'utf8')
+  readFile(resolve('tests/e2e/site.spec.ts'), 'utf8'),
+  readFile(resolve('tests/vscode/suite.cjs'), 'utf8'),
+  readFile(resolve('scripts/test-extension.mjs'), 'utf8')
 ]);
 for (const { id } of claims) {
   const count = testSources.join('\n').split(`@claim:${id}`).length - 1;
