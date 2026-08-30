@@ -1,0 +1,265 @@
+{
+  "generatedAt": "2026-08-30T06:27:18.443Z",
+  "viewports": {
+    "desktop": {
+      "status": 200,
+      "headers": {
+        "cache-control": "public, must-revalidate, max-age=30",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+        "content-type": "text/html",
+        "date": "Sun, 30 Aug 2026 06:27:18 GMT",
+        "etag": "\"25014790\"",
+        "last-modified": "Sun, 30 Aug 2026 05:50:58 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "strict-transport-security": "max-age=10886400; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-dns-prefetch-control": "off",
+        "x-xss-protection": "1; mode=block"
+      },
+      "semantics": {
+        "title": "Context Check — Find near-match code typos",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "images": 1,
+        "imagesMissingAlt": 0,
+        "overflow": 0,
+        "localStorage": [],
+        "sessionStorage": [],
+        "cookies": "",
+        "bodyText": "Skip to main content\nC\nContext Check\nHow it works\nDemo\nPrivacy\nDownload v1.1\nDEVELOPER PROOF DESK\nVOL. 1 · LOCAL EDITION\n\nLOCAL REPOSITORY VOCABULARY CHECK\n\nFind near-match code typos before review.\n\nContext Check compares newly introduced VS Code tokens with vocabulary already in your local repository—then explains the one character that looks out of place.\n\nDownload for VS Code\nTry it with sample data\n→\n\nFree · VS Code 1.85+ · repository stays on your device\n\nFig. 01\nOne mark. Before merge.\n\nPrivate by design. Reads permitted workspace files on your device.\n\nExplainable. Shows the exact nearby project token.\n\nRespectful. Flags a comparison, never a person.\n\n01\n\nTHE PROOF SHEET\n\nSee what “almost” looks like.\n\nThis demo runs the same deterministic matcher as the extension. Edit either side; nothing is sent anywhere.\n\nExisting project words\n\nIdentifiers and keys already trusted by the repository.\n\nNew change\n\nThe added lines you want to compare.\n\nCheck these lines\n2 possible confusions\n"
+      },
+      "axeSeriousCritical": [],
+      "firstFocus": {
+        "tag": "A",
+        "text": "Skip to main content",
+        "href": "#main",
+        "outline": "3px solid rgb(157, 28, 19)",
+        "box": {
+          "x": 8,
+          "y": 8,
+          "width": 205,
+          "height": 45.1875
+        }
+      },
+      "touchTargets": [],
+      "reducedMotionOver10ms": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestOrigins": [
+        "https://typo-context-checker.sociobot.in"
+      ],
+      "requests": [
+        {
+          "url": "https://typo-context-checker.sociobot.in/",
+          "method": "GET",
+          "type": "document"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/hero-proof-960.avif",
+          "method": "GET",
+          "type": "image"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/main-CgQcLAQ6.js",
+          "method": "GET",
+          "type": "script"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/main-C2-R3SIN.css",
+          "method": "GET",
+          "type": "stylesheet"
+        }
+      ]
+    },
+    "mobile": {
+      "status": 200,
+      "headers": {
+        "cache-control": "public, must-revalidate, max-age=30",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+        "content-type": "text/html",
+        "date": "Sun, 30 Aug 2026 06:27:20 GMT",
+        "etag": "\"25014790\"",
+        "last-modified": "Sun, 30 Aug 2026 05:50:58 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "strict-transport-security": "max-age=10886400; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-dns-prefetch-control": "off",
+        "x-xss-protection": "1; mode=block"
+      },
+      "semantics": {
+        "title": "Context Check — Find near-match code typos",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "images": 1,
+        "imagesMissingAlt": 0,
+        "overflow": 0,
+        "localStorage": [],
+        "sessionStorage": [],
+        "cookies": "",
+        "bodyText": "Skip to main content\nC\nContext Check\nDownload v1.1\nDEVELOPER PROOF DESK\n\nLOCAL REPOSITORY VOCABULARY CHECK\n\nFind near-match code typos before review.\n\nContext Check compares newly introduced VS Code tokens with vocabulary already in your local repository—then explains the one character that looks out of place.\n\nDownload for VS Code\nTry it with sample data\n→\n\nFree · VS Code 1.85+ · repository stays on your device\n\nFig. 01\nOne mark. Before merge.\n\nPrivate by design. Reads permitted workspace files on your device.\n\nExplainable. Shows the exact nearby project token.\n\nRespectful. Flags a comparison, never a person.\n\n01\n\nTHE PROOF SHEET\n\nSee what “almost” looks like.\n\nThis demo runs the same deterministic matcher as the extension. Edit either side; nothing is sent anywhere.\n\nExisting project words\n\nIdentifiers and keys already trusted by the repository.\n\nNew change\n\nThe added lines you want to compare.\n\nCheck these lines\n2 possible confusions\n\nCONFIG KEY · LINE 1\n\ndatabse_url\nlooks like\ndata"
+      },
+      "axeSeriousCritical": [],
+      "firstFocus": {
+        "tag": "A",
+        "text": "Skip to main content",
+        "href": "#main",
+        "outline": "0px solid rgb(255, 253, 247)",
+        "box": {
+          "x": 8,
+          "y": -57.390625,
+          "width": 194.578125,
+          "height": 43.59375
+        }
+      },
+      "touchTargets": [
+        {
+          "tag": "A",
+          "text": "Skip to main content",
+          "width": 194.6,
+          "height": 43.6
+        },
+        {
+          "tag": "A",
+          "text": "Context Check.",
+          "width": 224.8,
+          "height": 37
+        }
+      ],
+      "reducedMotionOver10ms": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestOrigins": [
+        "https://typo-context-checker.sociobot.in"
+      ],
+      "requests": [
+        {
+          "url": "https://typo-context-checker.sociobot.in/",
+          "method": "GET",
+          "type": "document"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/hero-proof-960.avif",
+          "method": "GET",
+          "type": "image"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/main-CgQcLAQ6.js",
+          "method": "GET",
+          "type": "script"
+        },
+        {
+          "url": "https://typo-context-checker.sociobot.in/assets/main-C2-R3SIN.css",
+          "method": "GET",
+          "type": "stylesheet"
+        }
+      ]
+    }
+  },
+  "flows": {
+    "focusBefore": {
+      "text": "Try it with sample data →",
+      "outline": "rgb(157, 28, 19) solid 3px"
+    },
+    "afterOneClick": {
+      "url": "https://typo-context-checker.sociobot.in/demo/",
+      "title": "Demo — Context Check",
+      "banner": true,
+      "resultHeading": "2 possible confusions"
+    },
+    "initial": {
+      "heading": "2 possible confusions",
+      "text": "2 possible confusions | CONFIG KEY · LINE 1 | databse_url | looks like | database_url | “databse_url” is 1 character shorter than “database_url”. | REVIEW BEFORE MERGE | IDENTIFIER · LINE 2 | paymentRetyrCount | looks like | paymentRetryCount | Characters 11 and 12 are reversed compared with “paymentRetryCount”. | REVIEW BEFORE MERGE"
+    },
+    "exact": {
+      "heading": "No close matches found",
+      "text": "No close matches found | The new tokens do not closely resemble the supplied project vocabulary."
+    },
+    "blank": {
+      "text": "Add both existing project words and changed text to make a comparison."
+    },
+    "short": {
+      "heading": "No close matches found",
+      "text": "No close matches found | The new tokens do not closely resemble the supplied project vocabulary."
+    },
+    "command": {
+      "heading": "1 possible confusion",
+      "text": "1 possible confusion | FILENAME · LINE 1 | ./deply-production.sh | looks like | deploy-production.sh | “./deply-production.sh” is 1 character shorter than “deploy-production.sh”. | REVIEW BEFORE MERGE"
+    },
+    "reset": {
+      "known": "database_url\npaymentRetryCount\ndeploy-production.sh\nuserSessionToken",
+      "changed": "databse_url = process.env.DATABASE_URL\npaymentRetyrCount += 1",
+      "heading": "2 possible confusions"
+    },
+    "axeSeriousCritical": [],
+    "requestOrigins": [
+      "https://typo-context-checker.sociobot.in"
+    ],
+    "consoleErrors": [],
+    "pageErrors": [],
+    "localStorage": [],
+    "sessionStorage": [],
+    "cookies": []
+  },
+  "routes": {
+    "/": {
+      "status": 200,
+      "url": "https://typo-context-checker.sociobot.in/",
+      "title": "Context Check — Find near-match code typos",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "seriousCritical": [],
+      "consoleErrors": []
+    },
+    "/demo/": {
+      "status": 200,
+      "url": "https://typo-context-checker.sociobot.in/demo/",
+      "title": "Demo — Context Check",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "seriousCritical": [],
+      "consoleErrors": []
+    },
+    "/privacy/": {
+      "status": 200,
+      "url": "https://typo-context-checker.sociobot.in/privacy/",
+      "title": "Privacy — Context Check",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "seriousCritical": [],
+      "consoleErrors": []
+    },
+    "/terms/": {
+      "status": 200,
+      "url": "https://typo-context-checker.sociobot.in/terms/",
+      "title": "Terms — Context Check",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "seriousCritical": [],
+      "consoleErrors": []
+    },
+    "/definitely-missing-verifier-route": {
+      "status": 404,
+      "url": "https://typo-context-checker.sociobot.in/definitely-missing-verifier-route",
+      "title": "Page not found — Context Check",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "seriousCritical": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ]
+    }
+  }
+}

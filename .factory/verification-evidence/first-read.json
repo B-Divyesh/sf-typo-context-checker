@@ -1,0 +1,196 @@
+{
+  "status": 200,
+  "title": "Context Check — Find near-match code typos",
+  "initialUrl": "https://typo-context-checker.sociobot.in/",
+  "viewportText": [
+    {
+      "tag": "span",
+      "text": "C",
+      "top": 19
+    },
+    {
+      "tag": "a",
+      "text": "How it works",
+      "top": 14
+    },
+    {
+      "tag": "a",
+      "text": "Demo",
+      "top": 14
+    },
+    {
+      "tag": "a",
+      "text": "Privacy",
+      "top": 14
+    },
+    {
+      "tag": "a",
+      "text": "Download v1.1",
+      "top": 14
+    },
+    {
+      "tag": "span",
+      "text": "DEVELOPER PROOF DESK",
+      "top": 90
+    },
+    {
+      "tag": "span",
+      "text": "VOL. 1 · LOCAL EDITION",
+      "top": 90
+    },
+    {
+      "tag": "p",
+      "text": "LOCAL REPOSITORY VOCABULARY CHECK",
+      "top": 156
+    },
+    {
+      "tag": "span",
+      "text": ".",
+      "top": 456
+    },
+    {
+      "tag": "p",
+      "text": "Context Check compares newly introduced VS Code tokens with vocabulary already in your local repository—then explains the one character that looks out of place.",
+      "top": 594
+    },
+    {
+      "tag": "a",
+      "text": "Download for VS Code",
+      "top": 755
+    },
+    {
+      "tag": "span",
+      "text": "→",
+      "top": 766
+    },
+    {
+      "tag": "p",
+      "text": "Free · VS Code 1.85+ · repository stays on your device",
+      "top": 819
+    },
+    {
+      "tag": "span",
+      "text": "Fig. 01",
+      "top": 727
+    }
+  ],
+  "actions": [
+    {
+      "tag": "a",
+      "text": "Skip to main content",
+      "href": "https://typo-context-checker.sociobot.in/#main",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "C Context Check",
+      "href": "https://typo-context-checker.sociobot.in/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "How it works",
+      "href": "https://typo-context-checker.sociobot.in/#how-it-works",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Demo",
+      "href": "https://typo-context-checker.sociobot.in/demo/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Privacy",
+      "href": "https://typo-context-checker.sociobot.in/privacy/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Download v1.1",
+      "href": "https://typo-context-checker.sociobot.in/downloads/context-check-vscode.vsix",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Download for VS Code",
+      "href": "https://typo-context-checker.sociobot.in/downloads/context-check-vscode.vsix",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Try it with sample data →",
+      "href": "https://typo-context-checker.sociobot.in/demo/",
+      "visible": true
+    },
+    {
+      "tag": "button",
+      "text": "Check these lines",
+      "href": null,
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Download VS Code VSIX",
+      "href": "https://typo-context-checker.sociobot.in/downloads/context-check-vscode.vsix",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Chromium companion",
+      "href": "https://typo-context-checker.sociobot.in/downloads/context-check-chrome.zip",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Read the plain-language privacy policy →",
+      "href": "https://typo-context-checker.sociobot.in/privacy/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Context Check.",
+      "href": "https://typo-context-checker.sociobot.in/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Privacy",
+      "href": "https://typo-context-checker.sociobot.in/privacy/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Terms",
+      "href": "https://typo-context-checker.sociobot.in/terms/",
+      "visible": true
+    },
+    {
+      "tag": "a",
+      "text": "Source on GitHub",
+      "href": "https://github.com/B-Divyesh/sf-typo-context-checker",
+      "visible": true
+    }
+  ],
+  "clickResult": {
+    "sampleCount": 1,
+    "boundingBox": {
+      "x": 322.140625,
+      "y": 757.21875,
+      "width": 234.90625,
+      "height": 44
+    },
+    "url": "https://typo-context-checker.sociobot.in/demo/",
+    "title": "Demo — Context Check",
+    "banner": "Demo — sample data, nothing is saved",
+    "resultHeading": "2 possible confusions"
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "requests": [
+    "https://typo-context-checker.sociobot.in/",
+    "https://typo-context-checker.sociobot.in/assets/hero-proof-960.avif",
+    "https://typo-context-checker.sociobot.in/assets/main-CgQcLAQ6.js",
+    "https://typo-context-checker.sociobot.in/assets/main-C2-R3SIN.css"
+  ]
+}
