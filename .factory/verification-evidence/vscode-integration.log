@@ -1,0 +1,109 @@
+
+> context-check@1.1.0 test:vscode
+> npm run build:vscode && npm run package:vscode && xvfb-run -a node scripts/test-vscode.mjs
+
+
+> context-check@1.1.0 build:vscode
+> tsc -p tsconfig.vscode.json
+
+
+> context-check@1.1.0 package:vscode
+> node scripts/package-vscode.mjs
+
+Packaged /work/repo/site/public/downloads/context-check-vscode.vsix
+- Resolving version...
+✔ Validated version: 1.135.0
+✔ Found existing install in /work/repo/.vscode-test/vscode-linux-x64-1.135.0
+[6689:0830/063202.600734:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063202.608236:ERROR:electron/shell/common/node_bindings.cc:509] Most NODE_OPTIONs are not supported in packaged apps. See documentation for more details.
+[6689:0830/063202.890931:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[6689:0830/063202.891008:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063202.891028:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063202.947406:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[6689:0830/063202.948560:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[6689:0830/063202.952830:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+Warning: 'cached-data' is not in the list of known options, but still passed to Electron/Chromium.
+[90m[main 2026-08-30T06:32:03.280Z][0m StorageMainService: creating application shared storage
+[6689:0830/063203.284072:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063203.284142:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063203.284166:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063203.284186:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[6689:0830/063203.290578:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.login1.Manager.Inhibit: object_path= /org/freedesktop/login1: unknown error type: 
+[6689:0830/063203.452163:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[90m[main 2026-08-30T06:32:03.452Z][0m [shared storage] Creating shared storage database at ':memory:' (wasCreated: true)
+[90m[main 2026-08-30T06:32:03.453Z][0m [shared storage] Initializing fallback application storage (path: in-memory)
+[6758:0830/063203.490229:ERROR:gpu/ipc/client/command_buffer_proxy_impl.cc:285] ContextResult::kTransientFailure: Failed to send GpuControl.CreateCommandBuffer.
+[90m[main 2026-08-30T06:32:03.497Z][0m [shared storage] Fallback application storage initialized with 3 items
+[90m[main 2026-08-30T06:32:03.498Z][0m update#setState disabled
+[90m[main 2026-08-30T06:32:03.498Z][0m update#ctor - updates are disabled by the environment
+[6689:0830/063203.576665:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+workbench#open()
+Creation of workbench contribution 'workbench.contrib.remoteStatusIndicator' took 25ms.
+[AgentHost:renderer] Acquiring MessagePort to agent host...
+[90m[main 2026-08-30T06:32:05.145Z][0m AgentHostProcessManager: agent host started
+[ChatModelSelection] event=no-model-at-toolbar-build surface="workbench" sessionKey=undefined conversationKey=undefined modelTarget=undefined storageKey="chat.currentLanguageModel.panel" widgetViewKind="view"
+[ChatModelSelection] event=no-model-at-toolbar-build surface="workbench" sessionKey="local" conversationKey="vscode-chat-session://local/YTZiNzNkNzctYzVhMS00YTJlLThkY2EtMmJhOTQ3MWVkZjMw" modelTarget=undefined storageKey="chat.currentLanguageModel.panel" widgetViewKind="view"
+[AgentHost:renderer] MessagePort acquired, creating client...
+Started local extension host with pid 6844.
+IExtensionHostStarter.start() took 186 ms.
+Loading development extension at /work/repo/dist/vscode-package/extension
+filterEnabledExtensions: extension 'GitHub.copilot-chat' is disabled
+[AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+[91m[main 2026-08-30T06:32:10.445Z][0m [AgentHost:stderr] (node:6780) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+
+Unknown channel: agentHostClientByokLm
+Unknown channel: agentHostClientProxy
+NativeExtensionHostFactory._createLocalProcessExtensionHostDataProvider.scannedExtensions: TypeScriptTeam.jsts-chat-features,vscode.bat,vscode.clojure,vscode.coffeescript,vscode.configuration-editing,GitHub.copilot-chat,vscode.cpp,vscode.csharp,vscode.css,vscode.css-language-features,vscode.dart,vscode.debug-auto-launch,vscode.debug-server-ready,vscode.diff,vscode.docker,vscode.dotenv,vscode.emmet,vscode.extension-editing,vscode.fsharp,vscode.git,vscode.git-base,vscode.github,vscode.github-authentication,vscode.go,vscode.groovy,vscode.grunt,vscode.gulp,vscode.handlebars,vscode.hlsl,vscode.html,vscode.html-language-features,vscode.ini,vscode.ipynb,vscode.jake,vscode.java,vscode.javascript,vscode.json,vscode.json-language-features,vscode.julia,vscode.latex,vscode.less,vscode.log,vscode.lua,vscode.make,vscode.markdown,vscode.markdown-language-features,vscode.markdown-math,vscode.media-preview,vscode.merge-conflict,vscode.mermaid-markdown-features,vscode.microsoft-authentication,ms-vscode.js-debug,ms-vscode.js-debug-companion,ms-vscode.vscode-js-profile-table,vscode.builtin-notebook-renderers,vscode.npm,vscode.objective-c,vscode.perl,vscode.php,vscode.php-language-features,vscode.powershell,vscode.prompt,vscode.pug,vscode.python,vscode.r,vscode.razor,vscode.references-view,vscode.restructuredtext,vscode.ruby,vscode.rust,vscode.scss,vscode.search-result,vscode.shaderlab,vscode.shellscript,vscode.simple-browser,vscode.sql,vscode.swift,vscode.terminal-suggest,vscode.theme-abyss,vscode.theme-defaults,vscode.theme-kimbie-dark,vscode.vscode-modern-icons,vscode.theme-monokai,vscode.theme-monokai-dimmed,vscode.theme-quietlight,vscode.theme-red,vscode.vscode-theme-seti,vscode.theme-solarized-dark,vscode.theme-solarized-light,vscode.theme-tomorrow-night-blue,vscode.tunnel-forwarding,vscode.typescript,vscode.typescript-language-features,vscode.vb,vscode.xml,vscode.yaml,sociobot.context-check
+filterEnabledExtensions: extension 'GitHub.copilot-chat' is disabled
+NativeExtensionHostFactory._createLocalProcessExtensionHostDataProvider.localExtensions: sociobot.context-check,TypeScriptTeam.jsts-chat-features,vscode.bat,vscode.clojure,vscode.coffeescript,vscode.configuration-editing,vscode.cpp,vscode.csharp,vscode.css,vscode.css-language-features,vscode.dart,vscode.debug-auto-launch,vscode.debug-server-ready,vscode.diff,vscode.docker,vscode.dotenv,vscode.emmet,vscode.extension-editing,vscode.fsharp,vscode.git,vscode.git-base,vscode.github,vscode.github-authentication,vscode.go,vscode.groovy,vscode.grunt,vscode.gulp,vscode.handlebars,vscode.hlsl,vscode.html,vscode.html-language-features,vscode.ini,vscode.ipynb,vscode.jake,vscode.java,vscode.javascript,vscode.json,vscode.json-language-features,vscode.julia,vscode.latex,vscode.less,vscode.log,vscode.lua,vscode.make,vscode.markdown,vscode.markdown-language-features,vscode.markdown-math,vscode.media-preview,vscode.merge-conflict,vscode.mermaid-markdown-features,vscode.microsoft-authentication,ms-vscode.js-debug,ms-vscode.js-debug-companion,ms-vscode.vscode-js-profile-table,vscode.builtin-notebook-renderers,vscode.npm,vscode.objective-c,vscode.perl,vscode.php,vscode.php-language-features,vscode.powershell,vscode.prompt,vscode.pug,vscode.python,vscode.r,vscode.razor,vscode.references-view,vscode.restructuredtext,vscode.ruby,vscode.rust,vscode.scss,vscode.search-result,vscode.shaderlab,vscode.shellscript,vscode.simple-browser,vscode.sql,vscode.swift,vscode.terminal-suggest,vscode.theme-abyss,vscode.theme-defaults,vscode.theme-kimbie-dark,vscode.vscode-modern-icons,vscode.theme-monokai,vscode.theme-monokai-dimmed,vscode.theme-quietlight,vscode.theme-red,vscode.vscode-theme-seti,vscode.theme-solarized-dark,vscode.theme-solarized-light,vscode.theme-tomorrow-night-blue,vscode.tunnel-forwarding,vscode.typescript,vscode.typescript-language-features,vscode.vb,vscode.xml,vscode.yaml
+NativeExtensionHostFactory._createLocalProcessExtensionHostDataProvider.myExtensions: sociobot.context-check,TypeScriptTeam.jsts-chat-features,vscode.bat,vscode.clojure,vscode.coffeescript,vscode.configuration-editing,vscode.cpp,vscode.csharp,vscode.css,vscode.css-language-features,vscode.dart,vscode.debug-auto-launch,vscode.debug-server-ready,vscode.diff,vscode.docker,vscode.dotenv,vscode.emmet,vscode.extension-editing,vscode.fsharp,vscode.git,vscode.git-base,vscode.github,vscode.github-authentication,vscode.go,vscode.groovy,vscode.grunt,vscode.gulp,vscode.handlebars,vscode.hlsl,vscode.html,vscode.html-language-features,vscode.ini,vscode.ipynb,vscode.jake,vscode.java,vscode.javascript,vscode.json,vscode.json-language-features,vscode.julia,vscode.latex,vscode.less,vscode.log,vscode.lua,vscode.make,vscode.markdown,vscode.markdown-language-features,vscode.markdown-math,vscode.media-preview,vscode.merge-conflict,vscode.mermaid-markdown-features,vscode.microsoft-authentication,ms-vscode.js-debug,ms-vscode.js-debug-companion,ms-vscode.vscode-js-profile-table,vscode.builtin-notebook-renderers,vscode.npm,vscode.objective-c,vscode.perl,vscode.php,vscode.php-language-features,vscode.powershell,vscode.prompt,vscode.pug,vscode.python,vscode.r,vscode.razor,vscode.references-view,vscode.restructuredtext,vscode.ruby,vscode.rust,vscode.scss,vscode.search-result,vscode.shaderlab,vscode.shellscript,vscode.simple-browser,vscode.sql,vscode.swift,vscode.terminal-suggest,vscode.theme-abyss,vscode.theme-defaults,vscode.theme-kimbie-dark,vscode.vscode-modern-icons,vscode.theme-monokai,vscode.theme-monokai-dimmed,vscode.theme-quietlight,vscode.theme-red,vscode.vscode-theme-seti,vscode.theme-solarized-dark,vscode.theme-solarized-light,vscode.theme-tomorrow-night-blue,vscode.tunnel-forwarding,vscode.typescript,vscode.typescript-language-features,vscode.vb,vscode.xml,vscode.yaml
+[AgentHost:renderer] Protocol connection established; clientId=f4045747-5e09-468c-9f57-e55751045f7c
+Unknown channel: agentHostClientProxy
+Unknown channel: agentHostClientProxy
+[AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+[AgentHost] No token resolved for resource: https://api.github.com
+[AgentHost] Clearing authentication for resource: https://api.github.com
+[RemoteAgentHostProtocol] Request 3 failed: {
+  code: -32603,
+  message: 'ProviderCatalogUnavailableError: Provider claude cannot enumerate its native session catalog yet\n' +
+    '    at hg._migrateLegacyProviderChats (file:///work/repo/.vscode-test/vscode-linux-x64-1.135.0/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:975:34194)'
+}
+[AgentHost] No token resolved for resource: https://api.github.com/repos
+[AgentHost] Clearing authentication for resource: https://api.github.com/repos
+[AgentHost] No token resolved for resource: https://api.github.com
+[AgentHost] No token resolved for resource: https://api.github.com/repos
+[RemoteAgentHostProtocol] Request 5 failed: {
+  code: -32603,
+  message: 'ProviderCatalogUnavailableError: Provider claude cannot enumerate its native session catalog yet\n' +
+    '    at hg._migrateLegacyProviderChats (file:///work/repo/.vscode-test/vscode-linux-x64-1.135.0/resources/app/out/vs/platform/agentHost/node/agentHostMain.js:975:34194)'
+}
+[ChatModelSelection] event=no-model-at-toolbar-build surface="workbench" sessionKey="local" conversationKey="vscode-chat-session://local/YTZiNzNkNzctYzVhMS00YTJlLThkY2EtMmJhOTQ3MWVkZjMw" modelTarget=undefined storageKey="chat.currentLanguageModel.panel" widgetViewKind="view"
+(node:6844) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /databse_url looks like existing database_url/. Input:
+
+'databse_url looks like existing databse_ur. “databse_url” is 1 character longer than “databse_ur”.'
+
+	at Object.run (/work/repo/tests/vscode/suite.cjs:31:10)
+Extension host test runner error AssertionError [ERR_ASSERTION]: The input did not match the regular expression /databse_url looks like existing database_url/. Input:
+
+'databse_url looks like existing databse_ur. “databse_url” is 1 character longer than “databse_ur”.'
+
+	at Object.run (/work/repo/tests/vscode/suite.cjs:31:10)
+Asking native host service to exit with code 1.
+[90m[main 2026-08-30T06:32:20.142Z][0m Extension host with pid 6844 exited with code: 0, signal: unknown.
+Exit code:   1
+/work/repo/node_modules/@vscode/test-electron/out/runTest.js:125
+                reject(new TestRunFailedError(code ?? undefined, signal ?? undefined));
+                       ^
+
+TestRunFailedError: Test run failed with code 1
+    at ChildProcess.onProcessClosed (/work/repo/node_modules/@vscode/test-electron/out/runTest.js:125:24)
+    at ChildProcess.emit (node:events:519:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12) {
+  code: 1,
+  signal: undefined
+}
+
+Node.js v22.23.2
