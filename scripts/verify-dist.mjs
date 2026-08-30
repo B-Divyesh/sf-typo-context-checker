@@ -30,7 +30,7 @@ const deployConfig = JSON.parse(await readFile(resolve('dist/site/staticwebapp.c
 if (deployConfig.globalHeaders?.['Referrer-Policy'] !== 'no-referrer' || !deployConfig.globalHeaders?.['Permissions-Policy']) {
   throw new Error('Static deployment response policy is incomplete.');
 }
-const immutableRule = deployConfig.routes?.find((route) => route.route === '/assets/main-*');
+const immutableRule = deployConfig.routes?.find((route) => route.route === '/assets/*');
 if (immutableRule?.headers?.['Cache-Control'] !== 'public, max-age=31536000, immutable') {
   throw new Error('Hashed main assets are not configured for immutable caching.');
 }
