@@ -1,0 +1,14 @@
+{
+  "url": "https://typo-context-checker.sociobot.in/",
+  "loadMs": 636,
+  "errors": [],
+  "a11y": {
+    "title": "Context Check — Find near-match code typos",
+    "lang": "en",
+    "h1": 1,
+    "main": true,
+    "imgsMissingAlt": 0,
+    "buttonsUnlabeled": 0,
+    "textLength": 2801
+  }
+}
