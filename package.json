@@ -1,6 +1,6 @@
 {
   "name": "context-check",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "A local-first contextual typo checker for VS Code workspaces and GitHub review.",
@@ -16,6 +16,8 @@
     "package:extension": "node scripts/package-extension.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:extension": "npm run build:extension && xvfb-run -a node scripts/test-extension.mjs",
+    "test:vscode": "npm run build:vscode && npm run package:vscode && xvfb-run -a node scripts/test-vscode.mjs",
     "check": "tsc --noEmit && npm test",
     "prepare": "wxt prepare"
   },
@@ -25,6 +27,7 @@
     "@types/chrome": "0.0.316",
     "@types/node": "22.13.10",
     "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "3.1.0",
     "archiver": "7.0.1",
     "typescript": "5.8.3",
     "vite": "6.4.3",

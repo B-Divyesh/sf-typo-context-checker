@@ -6,5 +6,6 @@ graphify-out/
 test-results/
 playwright-report/
 .wxt/
+.vscode-test/
 site/public/downloads/
 .DS_Store

@@ -6,6 +6,8 @@ It is accessibility-minded but does not diagnose, score, or label anyone. Source
 
 Live site: <https://typo-context-checker.sociobot.in>
 
+One-click sample: <https://typo-context-checker.sociobot.in/demo/>. It uses bundled sample text and saves nothing.
+
 ## What version 1 includes
 
 - Local VS Code workspace vocabulary with inline diagnostics for newly introduced tokens
@@ -46,6 +48,8 @@ npm run dev          # WXT extension development
 npm run dev:site     # landing site
 npm test             # deterministic matcher tests
 npm run test:e2e     # Chromium desktop/mobile + axe checks
+npm run test:extension # packaged Chromium popup/content integration (Linux + Xvfb)
+npm run test:vscode  # packaged VS Code host integration (Linux GUI libraries + Xvfb)
 npm run check        # TypeScript + unit tests
 npm run build        # complete reproducible production build
 ```

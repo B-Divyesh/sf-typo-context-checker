@@ -104,6 +104,14 @@ h1 span, .footer-mark span { color: var(--proof); }
 .footer-links { display: flex; gap: 24px; align-items: start; }
 .footer-links a { display: inline-flex; min-height: 44px; align-items: center; }
 .provenance { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid rgb(255 253 247 / 35%); }
+.demo-banner { display:flex; justify-content:space-between; gap:16px; padding:12px var(--gutter); color:var(--raised); background:var(--proof); font-size:14px; }
+.demo-banner span { display:flex; gap:20px; }
+.demo-banner a { display:inline-flex; min-height:44px; align-items:center; }
+.demo-shell { min-height:calc(100vh - 250px); padding:clamp(48px,8vw,96px) var(--gutter); }
+.demo-shell .section-intro { margin-bottom:36px; }
+.demo-shell h1 { max-width:12ch; font-size:clamp(52px,8vw,96px); }
+.demo-shell .section-intro > p:last-child { max-width:62ch; }
+.demo-shell .demo-results { margin-top:32px; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
   .button, .wordmark span { transition: transform 140ms ease, color 140ms ease, background-color 140ms ease; }
@@ -145,4 +153,5 @@ h1 span, .footer-mark span { color: var(--proof); }
   .site-footer { grid-template-columns: 1fr; }
   .footer-links { flex-wrap: wrap; }
   .provenance { grid-column: 1; }
+  .demo-banner { align-items:flex-start; flex-direction:column; }
 }

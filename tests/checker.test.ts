@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { readFile } from 'node:fs/promises';
 import { checkContext, damerauLevenshtein, extractTokens, makePairKey, pathIsDisabled } from '../src/core/checker';
 import { replaceFirstSuggestion } from '../src/core/replacement';
 import { changedLineSlice, checkWorkspaceChange, repositoryVocabulary } from '../src/vscode/workspace-check';
@@ -32,7 +33,7 @@ describe('context checker', () => {
     ]);
   });
 
-  it('matches exact, wildcard, and substring disabled paths', () => {
+  it('@claim:sensitive-defaults excludes environment, secret, and PEM paths', () => {
     expect(pathIsDisabled('.env.local', ['.env*'])).toBe(true);
     expect(pathIsDisabled('apps/web/.env.production', ['.env*'])).toBe(true);
     expect(pathIsDisabled('src/secrets/token.ts', ['**/secrets/**'])).toBe(true);
@@ -46,7 +47,7 @@ describe('context checker', () => {
     expect(replacement.before).toBe('databse_url = databse_url');
   });
 
-  it('checks a newly introduced token against local repository vocabulary and excludes sensitive paths', () => {
+  it('@claim:workspace-context checks a new token against permitted local repository vocabulary', () => {
     const documents = [
       { path: 'src/config.ts', text: 'const database_url = value;' },
       { path: '.env.production', text: 'database_url=secret-value' }
@@ -62,5 +63,22 @@ describe('context checker', () => {
     expect(slice).toEqual({ startLine: 1, text: 'const databse_url = value;' });
     expect(checkWorkspaceChange([{ path: 'src/config.ts', text: 'export const database_url = value;' }], slice.text, []))
       .toEqual([expect.objectContaining({ introduced: 'databse_url', existing: 'database_url', line: 1 })]);
+  });
+
+  it('@claim:extension-local-only has no source-upload or telemetry runtime', async () => {
+    const runtimeFiles = [
+      'vscode/extension.ts',
+      'entrypoints/background.ts',
+      'entrypoints/content.ts',
+      'entrypoints/popup/main.ts',
+      'src/core/checker.ts',
+      'src/core/storage.ts',
+      'src/vscode/workspace-check.ts'
+    ];
+    const runtime = (await Promise.all(runtimeFiles.map((path) => readFile(path, 'utf8')))).join('\n');
+    expect(runtime).not.toMatch(/\b(fetch|XMLHttpRequest|WebSocket|sendBeacon)\b/);
+    const manifest = await readFile('wxt.config.ts', 'utf8');
+    expect(manifest).toContain("host_permissions: ['https://github.com/*']");
+    expect(manifest).not.toMatch(/https?:\/\/(?!github\.com)/);
   });
 });

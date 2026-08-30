@@ -6,6 +6,7 @@ a { color:inherit; text-underline-offset:4px; }
 .skip-link { position:fixed; top:6px; left:6px; padding:8px 12px; color:var(--raised); background:var(--ink); transform:translateY(-150%); }
 .skip-link:focus { transform:none; }
 header, footer { display:flex; justify-content:space-between; gap:24px; padding:20px max(20px, calc((100vw - 900px)/2)); border-bottom:1px solid var(--ink); font-size:13px; font-weight:750; }
+header a, footer a { display:inline-flex; min-height:44px; align-items:center; }
 header span { color:var(--muted); }
 main { max-width:900px; margin:auto; padding:clamp(64px,10vw,120px) 20px; }
 .eyebrow { color:var(--proof); font-size:12px; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }
@@ -16,4 +17,4 @@ h2 { margin:0; font:700 25px/1.15 Georgia,"Times New Roman",serif; }
 section p { margin:0; color:var(--muted); }
 section strong { color:var(--ink); }
 footer { color:var(--raised); background:var(--ink); border:0; }
-@media(max-width:620px){ header span{display:none} section{grid-template-columns:1fr;gap:10px}.standfirst{font-size:20px} }
+@media(max-width:620px){ header span{display:none} section{grid-template-columns:1fr;gap:10px}.standfirst{font-size:20px} footer{flex-wrap:wrap} }

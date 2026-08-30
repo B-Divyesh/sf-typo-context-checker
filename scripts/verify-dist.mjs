@@ -5,6 +5,10 @@ const required = [
   'dist/site/index.html',
   'dist/site/privacy/index.html',
   'dist/site/terms/index.html',
+  'dist/site/demo/index.html',
+  'dist/site/404.html',
+  'dist/site/assets/context-check-og.jpg',
+  'dist/site/assets/apple-touch-icon.png',
   'dist/site/downloads/context-check-chrome.zip',
   'dist/site/downloads/context-check-vscode.vsix',
   'dist/site/staticwebapp.config.json',
@@ -29,5 +33,17 @@ if (deployConfig.globalHeaders?.['Referrer-Policy'] !== 'no-referrer' || !deploy
 const immutableRule = deployConfig.routes?.find((route) => route.route === '/assets/main-*');
 if (immutableRule?.headers?.['Cache-Control'] !== 'public, max-age=31536000, immutable') {
   throw new Error('Hashed main assets are not configured for immutable caching.');
+}
+if (deployConfig.responseOverrides?.['404']?.rewrite !== '/404.html') {
+  throw new Error('Static deployment does not use the product 404 page.');
+}
+const claims = JSON.parse(await readFile(resolve('.factory/claims.json'), 'utf8'));
+const testSources = await Promise.all([
+  readFile(resolve('tests/checker.test.ts'), 'utf8'),
+  readFile(resolve('tests/e2e/site.spec.ts'), 'utf8')
+]);
+for (const { id } of claims) {
+  const count = testSources.join('\n').split(`@claim:${id}`).length - 1;
+  if (count !== 1) throw new Error(`Claim ${id} must have exactly one tagged test; found ${count}.`);
 }
 console.log(`Verified static deploy and extension package. Initial JS: ${scriptBytes} bytes.`);

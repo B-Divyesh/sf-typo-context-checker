@@ -1,0 +1,37 @@
+[
+  {
+    "id": "workspace-context",
+    "claim": "The VS Code extension checks a newly introduced token against permitted local repository vocabulary.",
+    "where": "landing page, README, VS Code package",
+    "test": "npm test -- -t @claim:workspace-context",
+    "sandbox": "fixture workspace with a trusted database_url token and a newly introduced databse_url token"
+  },
+  {
+    "id": "sensitive-defaults",
+    "claim": "Environment files, secret directories, and PEM files are excluded by default.",
+    "where": "landing page, privacy page, README, extension settings",
+    "test": "npm test -- -t @claim:sensitive-defaults",
+    "sandbox": "workspace-relative root and nested sensitive paths"
+  },
+  {
+    "id": "demo-local-match",
+    "claim": "The sample checker finds and explains near-match code tokens.",
+    "where": "landing page and /demo/",
+    "test": "npm run test:e2e -- --grep @claim:demo-local-match",
+    "sandbox": "fresh browser context using only the sample repository vocabulary"
+  },
+  {
+    "id": "site-local-only",
+    "claim": "The site checker sends entered text to no other origin.",
+    "where": "landing page, /demo/, privacy page",
+    "test": "npm run test:e2e -- --grep @claim:site-local-only",
+    "sandbox": "fresh browser context recording every request while editing and checking sample data"
+  },
+  {
+    "id": "extension-local-only",
+    "claim": "The extensions do not upload source or call analytics and model APIs.",
+    "where": "landing page, privacy page, README",
+    "test": "npm test -- -t @claim:extension-local-only",
+    "sandbox": "static scan of every VS Code and Chromium runtime entry point plus the browser host permission"
+  }
+]
