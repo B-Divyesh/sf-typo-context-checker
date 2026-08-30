@@ -52,6 +52,7 @@ npm run test:extension # packaged Chromium popup/content integration (Linux + Xv
 npm run test:vscode  # packaged VS Code host integration (Linux GUI libraries + Xvfb)
 npm run check        # TypeScript + unit tests
 npm run build        # complete reproducible production build
+npm run qa           # all type, unit, build, site, Chromium, and VS Code gates
 ```
 
 `npm run build` writes:

@@ -19,6 +19,7 @@
     "test:extension": "npm run build:extension && xvfb-run -a node scripts/test-extension.mjs",
     "test:vscode": "npm run build:vscode && npm run package:vscode && xvfb-run -a node scripts/test-vscode.mjs",
     "check": "tsc --noEmit && npm test",
+    "qa": "npm run check && npm run build && npm run test:e2e && npm run test:extension && npm run test:vscode",
     "prepare": "wxt prepare"
   },
   "devDependencies": {
