@@ -1,0 +1,23 @@
+{
+  "fixture": {
+    "documents": [
+      {
+        "path": "src/config.ts",
+        "text": "export const database_url = value;\nexport const next = value;"
+      }
+    ],
+    "changedText": "export const databse_url = value;"
+  },
+  "activeDocumentExcluded": [],
+  "activeDocumentIncluded": [
+    {
+      "introduced": "databse_url",
+      "existing": "database_url",
+      "kind": "config key",
+      "line": 1,
+      "distance": 1,
+      "explanation": "“databse_url” is 1 character shorter than “database_url”.",
+      "pairKey": "databse_url→database_url"
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "routes": [
+    {
+      "viewport": "desktop",
+      "path": "/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Context Check — Find near-match code typos",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/demo/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Demo — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/privacy/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Privacy — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/terms/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Terms — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/not-a-real-context-check-route",
+      "status": 404,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Page not found — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Context Check — Find near-match code typos",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/demo/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Demo — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/privacy/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Privacy — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/terms/",
+      "status": 200,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Terms — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/not-a-real-context-check-route",
+      "status": 404,
+      "errors": [],
+      "serious": [],
+      "semantics": {
+        "title": "Page not found — Context Check",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": false
+      },
+      "undersized": []
+    }
+  ],
+  "flow": {
+    "first": {
+      "h1": "Find near-match code typos before review.",
+      "h1Box": {
+        "top": 184.78125,
+        "bottom": 401.90625,
+        "inViewport": true
+      },
+      "audience": "For software engineers and reviewers who need help spotting plausible code-token mistakes before review.",
+      "audienceBox": {
+        "top": 583.640625,
+        "bottom": 653.203125,
+        "inViewport": true
+      },
+      "cta": "Try it with sample data",
+      "ctaBox": {
+        "top": 681.203125,
+        "bottom": 729.203125,
+        "inViewport": true
+      }
+    },
+    "firstFocus": {
+      "text": "Skip to main content",
+      "outline": "rgb(255, 253, 247) solid 0px",
+      "outlineOffset": "0px"
+    },
+    "tabs": [
+      {
+        "text": "Skip to main content",
+        "href": "#main"
+      },
+      {
+        "text": "C Context Check",
+        "href": "/"
+      },
+      {
+        "text": "Download v1.1",
+        "href": "/downloads/context-check-vscode.vsix"
+      },
+      {
+        "text": "Try it with sample data",
+        "href": "/demo/"
+      }
+    ],
+    "demoInitial": {
+      "url": "https://typo-context-checker.sociobot.in/demo/",
+      "banner": true,
+      "reset": true,
+      "startReal": true,
+      "count": "2 possible confusions"
+    },
+    "configCase": {
+      "count": "1 possible confusion",
+      "comparison": "databse_url\nlooks like\ndatabase_url",
+      "explanation": "“databse_url” is 1 character shorter than “database_url”."
+    },
+    "emptyCase": true,
+    "recoveryCase": {
+      "count": "1 possible confusion",
+      "comparison": "./deply-production.sh\nlooks like\ndeploy-production.sh"
+    },
+    "exactCase": true,
+    "shortBoundary": true,
+    "invalidRecovery": true,
+    "resetCase": {
+      "known": true,
+      "changed": true,
+      "count": "2 possible confusions"
+    },
+    "storage": {
+      "local": 0,
+      "session": 0,
+      "sw": 0
+    },
+    "cookies": [],
+    "errors": [],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/",
+        "type": "document"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/hero-proof-960.avif",
+        "type": "image"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-BD0qhzzr.js",
+        "type": "script"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-QLtijWbq.css",
+        "type": "stylesheet"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/demo/",
+        "type": "document"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-BD0qhzzr.js",
+        "type": "script"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-QLtijWbq.css",
+        "type": "stylesheet"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/demo/",
+        "type": "document"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-BD0qhzzr.js",
+        "type": "script"
+      },
+      {
+        "method": "GET",
+        "url": "https://typo-context-checker.sociobot.in/assets/main-QLtijWbq.css",
+        "type": "stylesheet"
+      }
+    ],
+    "externalRequests": []
+  }
+}
