@@ -62,7 +62,20 @@ Budgets: initial JavaScript 5,281 bytes; main CSS 9,910 bytes; legal CSS 1,610 b
 
 ## Deploy and live identity
 
-Deployment target is the existing static resource `sf-typo-context-checker`. No unrelated service, database, vault, app setting, DNS resource, or secret is read or changed. Live response and byte-identity evidence is recorded after deployment below.
+Commit `107e665` was deployed to the existing static resource `sf-typo-context-checker` as deployment `84506d2a-3be2-4e3d-a4ca-9595bd858b71`. No unrelated service, database, vault, app setting, DNS resource, or secret was read or changed.
+
+Live verification at <https://typo-context-checker.sociobot.in/>:
+
+- Root, demo, privacy, terms, VSIX, and Chromium ZIP return 200; an unknown route returns the product 404 with status 404.
+- HTML sends `Referrer-Policy: no-referrer`, the declared Permissions Policy and CSP, and `X-Content-Type-Options: nosniff`.
+- `assets/main-CgQcLAQ6.js` sends `Cache-Control: public, max-age=31536000, immutable`.
+- Root HTML SHA-256 matches `dist/site/index.html`: `ece9b3bb0aa378527193fe1161c5783e9a8a9e4e07047ed1b984200e9dc5339a`.
+- Main JS SHA-256 matches: `1772839c057d6a8861d79fb16f8c1b7602fd4ddb457933cefc4a0965c6008fab`.
+- VSIX SHA-256 matches: `9df1f135ae4fb7be49afe4ce45346495b3c72dbce35c2720bc3d7d4b4bf7a412`.
+- Chromium ZIP SHA-256 matches: `f02cde95336d4d6561d5d72a2ffcc89bf4d2b17f9d97ceec4b8c6ecc2880251a`.
+- Desktop and 390×844 demo checks found no console/page errors, no external origin, no overflow, and zero serious/critical axe findings.
+- Live `verify-url.sh` passed with one h1, one main, `lang=en`, complete alt text, labeled buttons, and zero console errors.
+- Live Lighthouse 12.8.2 mobile repeated 100/100/100/100, FCP/LCP 0.9s, CLS 0, and TBT 0ms.
 
 ## Known gaps
 
